@@ -1,7 +1,9 @@
-﻿using System;
+﻿using GroupProject.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using CustomLibrary;
 
 namespace GroupProject.Repositories
 {
@@ -28,7 +30,7 @@ namespace GroupProject.Repositories
 
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                db.ArtWorks.Add(new Tag
+                db.Tags.Add(new Tag
                 {
                     Name = name
                 });
@@ -45,7 +47,7 @@ namespace GroupProject.Repositories
 
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                db.Tags.Attach(artwork);
+                db.Tags.Attach(tag);
                 db.Entry(tag).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
             }

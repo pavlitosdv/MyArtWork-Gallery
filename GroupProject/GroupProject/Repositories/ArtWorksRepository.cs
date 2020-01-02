@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CustomLibrary;
+using GroupProject.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,7 +16,7 @@ namespace GroupProject.Repositories
 
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                artWorks = db.ArtWork.ToList();
+                artWorks = db.ArtWorks.ToList();
             }
 
 
@@ -29,7 +31,7 @@ namespace GroupProject.Repositories
 
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                db.ArtWork.Add(new ArtWork
+                db.ArtWorks.Add(new ArtWork
                 {
                     Name = name
                 });
@@ -46,8 +48,8 @@ namespace GroupProject.Repositories
 
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                db.ArtWork.Attach(artwork);
-                db.Entry(atrwork).State = System.Data.Entity.EntityState.Modified;
+                db.ArtWorks.Attach(artwork);
+                db.Entry(artwork).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
             }
         }
@@ -58,8 +60,8 @@ namespace GroupProject.Repositories
         {
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                var artwork = db.Artists.Find(id);
-                db.ArtWork.Remove(artwork);
+                var artwork = db.ArtWorks.Find(id);
+                db.ArtWorks.Remove(artwork);
                 db.SaveChanges();
             }
         }
@@ -71,7 +73,7 @@ namespace GroupProject.Repositories
             ArtWork artwork;
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                artwork = db.ArtWork.Find(id);
+                artwork = db.ArtWorks.Find(id);
             }
 
             return artwork;
