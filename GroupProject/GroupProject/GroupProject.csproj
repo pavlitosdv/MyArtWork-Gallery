@@ -189,6 +189,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
+    <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\ArtWork.cs" />
     <Compile Include="Models\Enums\Media.cs" />
     <Compile Include="Models\Enums\Style.cs" />
