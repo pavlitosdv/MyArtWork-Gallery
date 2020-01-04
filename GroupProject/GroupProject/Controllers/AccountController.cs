@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using GroupProject.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System.Collections.Generic;
 
 namespace GroupProject.Controllers
 {
@@ -139,6 +141,12 @@ namespace GroupProject.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            List<IdentityRole> roles = null;
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                roles = db.Roles.Where(role => role.Name != "Administrator").ToList(); // na min epistrefi ton administrator
+            }
+            ViewBag.Roles = roles;
             return View();
         }
 
@@ -153,8 +161,13 @@ namespace GroupProject.Controllers
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
+
                 if (result.Succeeded)
                 {
+                    user = UserManager.FindByName(model.Email);
+
+                    await UserManager.AddToRoleAsync(user.Id, model.Role);
+
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
