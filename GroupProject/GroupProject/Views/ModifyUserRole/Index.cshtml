@@ -1,0 +1,42 @@
+﻿@model  IEnumerable<GroupProject.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Role</th>
+            <th scope="col" colspan="4">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Email</td>
+                @*<td>@item.Roles</td>*@
+                <td>
+                    @Html.ActionLink("View more", "RegisterRole", "Account", new { id = item.Id }, null)
+                </td>
+
+              
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "Gigs", new { id = item.Id }, null)
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", "Gigs", new { id = item.Id }, null)
+                </td>
+               
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
