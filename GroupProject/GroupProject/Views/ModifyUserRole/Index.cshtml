@@ -22,15 +22,8 @@
                 @*<td>@item.Roles</td>*@
                 <td>
                     @Html.ActionLink("View more", "RegisterRole", "Account", new { id = item.Id }, null)
-                </td>
-
-              
-                <td>
-                    @Html.ActionLink("Edit", "Edit", "Gigs", new { id = item.Id }, null)
-                </td>
-                <td>
-                    @Html.ActionLink("Delete", "Delete", "Gigs", new { id = item.Id }, null)
-                </td>
+                </td>            
+         
                
             </tr>
         }
