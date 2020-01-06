@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,10 +8,14 @@ namespace GroupProject.Models
 {
     public class UserRoleViewModel
     {
+        public ApplicationUser ApplicationUser { get; set; }
+        public List<RegisterViewModel> RegisterViewModel { get; set; }
+        public List<IdentityRole> Roles { get; set; }
+        public List<IdentityUser> users { get; set; }
 
-        public List<ApplicationUser> applicationUser{get;set;}
+        public IdentityDbContext<ApplicationUser> identity {get;set;}
 
-        public List<RegisterViewModel> registerViewModel { get; set; }
+
 
     }
 }

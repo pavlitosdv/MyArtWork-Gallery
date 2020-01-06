@@ -12,6 +12,7 @@ namespace GroupProject.Models
 
         public DbSet<ArtWork> ArtWorks { get; set; }
         public DbSet<Tag> Tags { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

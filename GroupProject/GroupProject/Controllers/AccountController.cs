@@ -166,9 +166,9 @@ namespace GroupProject.Controllers
 
                 if (result.Succeeded)
                 {
-                    //user = UserManager.FindByName(model.Email);
+                    user = UserManager.FindByName(model.Email);
 
-                    result= await UserManager.AddToRoleAsync(user.Id, model.Role);
+                    await UserManager.AddToRoleAsync(user.Id, model.Role);
 
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
@@ -186,6 +186,8 @@ namespace GroupProject.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+
+        #region **Dokimes**
 
         //[HttpGet]
         //public ActionResult RegisterRole(string id)
@@ -207,6 +209,7 @@ namespace GroupProject.Controllers
 
         //    return View();
         //}
+
 
         [HttpGet]
         public ActionResult RegisterRole()
@@ -272,6 +275,8 @@ namespace GroupProject.Controllers
 
             return View();
         }
+
+        #endregion
 
         //
         // GET: /Account/ConfirmEmail

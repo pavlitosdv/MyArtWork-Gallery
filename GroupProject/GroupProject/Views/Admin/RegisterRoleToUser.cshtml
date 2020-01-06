@@ -1,4 +1,4 @@
-﻿@model GroupProject.Models.RegisterViewModel
+﻿@model GroupProject.Models.UserRoleViewModel
 
 @{
     ViewBag.Title = "RegisterRole";
@@ -9,7 +9,7 @@
 
 @using (Html.BeginForm("RegisterRole", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
-    @Html.HiddenFor(i => i.Email);
+    @Html.HiddenFor(i => i.ApplicationUser.Email);
 
     @Html.AntiForgeryToken()
 
@@ -26,19 +26,19 @@
         </div>*@
     @Html.ValidationSummary("", new { @class = "text-danger" })
     <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.ApplicationUser.Email, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @*@Html.TextBoxFor(m => m.Email, new { @class = "form-control", @readonly = "readonly" })*@
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.ApplicationUser.Email, new { @class = "form-control" })
 
         </div>
     </div>
 
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
-        @Html.LabelFor(m => m.Role, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.identity.Roles, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.DropDownListFor(m => m.Role, new SelectList(ViewBag.Roles, "Name", "Name"), "--Select role--", new { @class = "form-control" })
+            @Html.DropDownListFor(m => m.identity.Roles, new SelectList(ViewBag.Roles, "Name", "Name"), "--Select role--", new { @class = "form-control" })
         </div>
     </div>
 
