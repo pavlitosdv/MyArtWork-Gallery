@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -11,10 +12,7 @@ namespace GroupProject.Models
     {
         [Key]
         public int Id { get; set; }
-
-        //[ForeignKey]
-        //public ArtistId { get; set; }
-
+        #region data
         [Required]
         [MaxLength(50)]
         public string Name { get; set; }
@@ -37,11 +35,18 @@ namespace GroupProject.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:d/M/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DatePublished { get; set; }
+        #endregion
 
         public virtual ICollection<Tag> Tags { get; set; }
 
-       // public virtual ICollection<User/Artist> User/Artist {get; set;}
+        public virtual ICollection<ApplicationUser> MyFans { get; set; }
+        //public string ArtistId { get; set; }
 
-        //public virtual Artist artist { get; set; }
+        //[Required]
+        //[ForeignKey("ArtistId")]
+        //public ApplicationUser Artist { get; set; }
+
+
+
     }
 }

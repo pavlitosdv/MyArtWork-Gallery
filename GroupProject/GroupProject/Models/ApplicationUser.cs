@@ -9,9 +9,11 @@ using System.Web;
 
 namespace GroupProject.Models
 {
-   
+
     public class ApplicationUser : IdentityUser
     {
+        public virtual ICollection<ArtWork> MyArtWorks { get; set; }
+        public virtual ICollection<Preference> MyPreferences { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType

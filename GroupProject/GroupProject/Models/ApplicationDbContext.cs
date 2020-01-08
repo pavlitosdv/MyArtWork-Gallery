@@ -10,8 +10,10 @@ namespace GroupProject.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
 
-        public DbSet<ArtWork> ArtWorks { get; set; }
-        public DbSet<Tag> Tags { get; set; }
+        public virtual DbSet<ArtWork> ArtWorks { get; set; }
+        public virtual DbSet<Tag> Tags { get; set; }
+        public virtual DbSet<Commission> Commissions { get; set; }
+        public virtual DbSet<Preference> Preferences { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

@@ -32,6 +32,21 @@ namespace GroupProject.Controllers
             return View();
         }
 
+        public ActionResult Users()
+        {
+            return View();
+        }
+
+        public ActionResult Artworks()
+        {
+            return View();
+        }
+
+        public ActionResult Tags()
+        {
+            return View();
+        }
+
         //[HttpGet]
         //public ActionResult RegisterRole(string id)
         //{
