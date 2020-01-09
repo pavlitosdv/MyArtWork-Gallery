@@ -1,6 +1,49 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    /* force scrollbar */
+    html {
+        overflow-y: scroll;
+    }
+
+    body {
+        font-family: sans-serif;
+    }
+
+    /* ---- grid ---- */
+
+    .grid {
+        background: #DDD;
+    }
+
+        /* clear fix */
+        .grid:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+    /* ---- .grid-item ---- */
+
+    .grid-sizer,
+    .grid-item {
+        width: 33.333%;
+    }
+
+    .grid-item {
+        float: left;
+    }
+
+        .grid-item img {
+            display: block;
+            max-width: 100%;
+        }
+</style>
 
 <div class="jumbotron">
     <h1>ASP.NET</h1>
@@ -8,24 +51,53 @@
     <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+<h1>Masonry - imagesLoaded progress</h1>
+
+<div class="grid">
+    <div class="grid-sizer"></div>
+    <div class="grid-item">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/orange-tree.jpg" />
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+    <div class="grid-item">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/submerged.jpg" />
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    <div class="grid-item">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/look-out.jpg" />
+    </div>
+    <div class="grid-item">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/one-world-trade.jpg" />
+    </div>
+    <div class="grid-item">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/drizzle.jpg" />
+    </div>
+    <div class="grid-item">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/cat-nose.jpg" />
+    </div>
+    <div class="grid-item">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/contrail.jpg" />
+    </div>
+    <div class="grid-item">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/golden-hour.jpg" />
+    </div>
+    <div class="grid-item">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/flight-formation.jpg" />
     </div>
 </div>
+
+
+@section Scripts {
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+    <script>
+        $(document).ready(function(){
+        var $grid = $('.grid').masonry({
+        itemSelector: '.grid-item',
+        percentPosition: true,
+        columnWidth: '.grid-sizer'
+        });
+        // layout Masonry after each image loads
+        $grid.imagesLoaded().progress( function() {
+        $grid.masonry();
+        });
+        })
+    </script>
+}

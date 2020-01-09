@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "Users";
+    Layout = "~/Views/Shared/_AdminPanel.cshtml";
+}
+
+
+<table id="users" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Role</th>
+            <th>Some Column</th>
+        </tr>
+    </thead>
+    <tbody>
+        @*@foreach (var Movie in Model)
+            {
+                <tr>
+                    <td>@Html.ActionLink(Movie.Name, "Edit", "Movies", new { id = Movie.Id }, null)</td>
+                </tr>
+            }*@
+        <tr>
+            <td>John Smith</td>
+            <td>Artist</td>
+            <td>Some Data</td>
+        </tr>
+        <tr>
+            <td>Jack Robin</td>
+            <td>User</td>
+            <td>Some Data</td>
+        </tr>
+        <tr>
+            <td>Lia Anderson</td>
+            <td>Auser</td>
+            <td>Some Data</td>
+        </tr>
+        <tr>
+            <td>Sonia Stern</td>
+            <td>Admin</td>
+            <td>Some Data</td>
+        </tr>
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#users").DataTable();
+            
+        });
+
+    </script>
+}
