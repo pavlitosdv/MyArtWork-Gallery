@@ -37,6 +37,43 @@ namespace GroupProject.Controllers
         {
             return View();
         }
+
+        public ActionResult Users()
+        {
+            return View();
+        }
+
+        public ActionResult Artworks()
+        {
+            return View();
+        }
+
+        public ActionResult Tags()
+        {
+            return View();
+        }
+
+        //[HttpGet]
+        //public ActionResult RegisterRole(string id)
+        //{
+
+        //    ApplicationUser userList;
+        //    using (ApplicationDbContext db = new ApplicationDbContext())
+        //    {
+        //        userList = db.Users.Find(id);
+        //    }
+        //    ViewBag.Users = userList;
+
+        //    List<IdentityRole> roles = null;
+        //    using (ApplicationDbContext db = new ApplicationDbContext())
+        //    {
+        //        roles = db.Roles.ToList();
+        //    }
+        //    ViewBag.Roles = roles;
+
+        //    return View();
+        //}
+
         
         [HttpGet]
         public ActionResult RegisterRoleToUser(string id)

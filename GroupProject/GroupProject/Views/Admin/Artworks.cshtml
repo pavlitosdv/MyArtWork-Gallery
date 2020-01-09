@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "Artworks";
+    Layout = "~/Views/Shared/_AdminPanel.cshtml";
+}
+
+<table id="artworks" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Artist</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @*@foreach (var Movie in Model)
+            {
+                <tr>
+                    <td>@Html.ActionLink(Movie.Name, "Edit", "Movies", new { id = Movie.Id }, null)</td>
+                </tr>
+            }*@
+        <tr>
+            <td>Blue Sky</td>
+            <td>John Smith</td>
+            <<td><a>Edit</a> <a>Delete</a></td>
+        </tr>
+        <tr>
+            <td>Green Forest</td>
+            <td>John Smith</td>
+            <td><a>Edit</a> <a>Delete</a></td>
+        </tr>
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#artworks").DataTable();
+        });
+
+    </script>
+}
+

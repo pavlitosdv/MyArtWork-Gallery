@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -10,17 +11,20 @@ namespace GroupProject.Models
     public class ArtWork
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        //[ForeignKey]
-        //public ArtistId { get; set; }
+        #region Fields Data
 
         [Required]
         [MaxLength(50)]
         public string Name { get; set; }
 
         [Required]
-        public string Dimensions { get; set; }
+        public long Length { get; set; }
+
+        [Required]
+        public long Width { get; set; }
 
         [Required]
         public Style style { get; set; }
@@ -38,10 +42,18 @@ namespace GroupProject.Models
         [DisplayFormat(DataFormatString = "{0:d/M/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DatePublished { get; set; }
 
+        #endregion
+
+        #region Navigation Properties
+
+        #region An ArtWork must have an Artist
+        public virtual ApplicationUser Artist { get; set; }
+        #endregion
+
+        #region An ArtWork may have many Tags that charactetize it
         public virtual ICollection<Tag> Tags { get; set; }
+        #endregion  
 
-       // public virtual ICollection<User/Artist> User/Artist {get; set;}
-
-        //public virtual Artist artist { get; set; }
+        #endregion
     }
 }

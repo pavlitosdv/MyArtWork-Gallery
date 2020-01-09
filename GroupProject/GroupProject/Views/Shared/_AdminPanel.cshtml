@@ -1,0 +1,101 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/admin.css")
+
+    @RenderSection("styles", required: false)
+</head>
+<body>
+    <div id="responsive-admin-menu">
+        <div id="responsive-menu">
+            <div class="menuicon">≡</div>
+        </div>
+
+        @*<div id="logo"></div>*@
+
+        <!--Menu-->
+        <div id="menu">
+            <a href="" title="Dashboard">
+                <i class="icon-dashboard"></i><span>
+                    Dashboard
+                </span>
+            </a>
+            <a href="/admin/artworks" title="Artworks"><i class="icon-picture"></i><span> Artworks</span></a>
+            <a href="/admin/users" title="Users"><i class="icon-user"></i><span> Users</span></a>
+            <a href="/admin/tags" title="Tags"><i class="icon-tags"></i><span> Tags</span></a>
+            <a href="" title="Media" class="submenu" name="media-sub">
+                <i class="icon-eye-open"></i><span>
+                    User Interaction
+                </span>
+            </a>
+            <!-- Media Sub Menu -->
+            <div id="media-sub" style="display: none;">
+                <a href="" title="Comments">
+                    <i class="icon-comment-alt"></i><span>
+                        Comments
+                    </span>
+                </a>
+                <a href="" title="Favourites">
+                    <i class="icon-heart-empty"></i><span>
+                        Favourites
+                    </span>
+                </a>
+            </div>
+            <!-- Media Sub Menu -->
+
+            <a href="" title="Graph &amp; Charts">
+                <i class="icon-bar-chart"></i><span>
+                    Graph &amp; Charts
+                </span>
+            </a>
+
+        </div>
+        <!--Menu-->
+
+
+    </div>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Roles", "RegisterRole", "Account")</li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+
+        <div id="content-wrapper">
+            @RenderBody()
+        </div>
+
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/scripts/admin-sidebar.js")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
