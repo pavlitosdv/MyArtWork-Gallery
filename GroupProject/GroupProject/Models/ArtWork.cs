@@ -10,17 +10,26 @@ namespace GroupProject.Models
     public class ArtWork
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        //[ForeignKey]
-        //public ArtistId { get; set; }
+        #region An ArtWork belongs to one and only one Artist
+        [Display(Name = "Artist")]
+        public int ArtistId { get; set; }
+
+        [ForeignKey("ArtistId")]
+        public virtual Artist Artist { get; set; }
+        #endregion
 
         [Required]
         [MaxLength(50)]
         public string Name { get; set; }
 
         [Required]
-        public string Dimensions { get; set; }
+        public long Length { get; set; }
+
+        [Required]
+        public long Width { get; set; }
 
         [Required]
         public Style style { get; set; }
@@ -38,10 +47,16 @@ namespace GroupProject.Models
         [DisplayFormat(DataFormatString = "{0:d/M/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DatePublished { get; set; }
 
+        #region An ArtWork may have many Tags that charactetize  it
         public virtual ICollection<Tag> Tags { get; set; }
+        #endregion
 
-       // public virtual ICollection<User/Artist> User/Artist {get; set;}
+        #region Many Users may prefer this specific ArtWork 
+        public virtual ICollection<User> UsersFavourites {get; set;}
+        #endregion
 
-        //public virtual Artist artist { get; set; }
+        #region Many Artists may prefer this specific ArtWork
+        public virtual ICollection<Artist> ArtistsFavourites { get; set; }
+        #endregion
     }
 }

@@ -10,8 +10,12 @@ namespace GroupProject.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
 
+        #region Tables
         public DbSet<ArtWork> ArtWorks { get; set; }
         public DbSet<Tag> Tags { get; set; }
+        public DbSet<Commission> Commissions { get; set; }
+        #endregion
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
