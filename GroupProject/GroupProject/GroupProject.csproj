@@ -261,41 +261,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202001040949151_Roles added.cs" />
-    <Compile Include="Migrations\202001040949151_Roles added.Designer.cs">
-      <DependentUpon>202001040949151_Roles added.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202001050054232_added default admin and user.cs" />
-    <Compile Include="Migrations\202001050054232_added default admin and user.Designer.cs">
-      <DependentUpon>202001050054232_added default admin and user.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202001081249272_DB Main Entities.cs" />
-    <Compile Include="Migrations\202001081249272_DB Main Entities.Designer.cs">
-      <DependentUpon>202001081249272_DB Main Entities.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202001081300018_Preferences.cs" />
-    <Compile Include="Migrations\202001081300018_Preferences.Designer.cs">
-      <DependentUpon>202001081300018_Preferences.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202001081311058_Test.cs" />
-    <Compile Include="Migrations\202001081311058_Test.Designer.cs">
-      <DependentUpon>202001081311058_Test.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202001081314273_Test1.cs" />
-    <Compile Include="Migrations\202001081314273_Test1.Designer.cs">
-      <DependentUpon>202001081314273_Test1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202001081324311_ArtistArtworks.cs" />
-    <Compile Include="Migrations\202001081324311_ArtistArtworks.Designer.cs">
-      <DependentUpon>202001081324311_ArtistArtworks.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202001081349261_Something New.cs" />
-    <Compile Include="Migrations\202001081349261_Something New.Designer.cs">
-      <DependentUpon>202001081349261_Something New.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202001081408550_ArtistArtWorksFinal.cs" />
-    <Compile Include="Migrations\202001081408550_ArtistArtWorksFinal.Designer.cs">
-      <DependentUpon>202001081408550_ArtistArtWorksFinal.cs</DependentUpon>
+    <Compile Include="Migrations\202001091827444_Initial.cs" />
+    <Compile Include="Migrations\202001091827444_Initial.Designer.cs">
+      <DependentUpon>202001091827444_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -583,32 +551,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202001040949151_Roles added.resx">
-      <DependentUpon>202001040949151_Roles added.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202001050054232_added default admin and user.resx">
-      <DependentUpon>202001050054232_added default admin and user.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202001081249272_DB Main Entities.resx">
-      <DependentUpon>202001081249272_DB Main Entities.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202001081300018_Preferences.resx">
-      <DependentUpon>202001081300018_Preferences.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202001081311058_Test.resx">
-      <DependentUpon>202001081311058_Test.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202001081314273_Test1.resx">
-      <DependentUpon>202001081314273_Test1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202001081324311_ArtistArtworks.resx">
-      <DependentUpon>202001081324311_ArtistArtworks.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202001081349261_Something New.resx">
-      <DependentUpon>202001081349261_Something New.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202001081408550_ArtistArtWorksFinal.resx">
-      <DependentUpon>202001081408550_ArtistArtWorksFinal.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202001091827444_Initial.resx">
+      <DependentUpon>202001091827444_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
