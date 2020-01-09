@@ -13,6 +13,16 @@ namespace GroupProject.Controllers
             return View();
         }
 
+        //public ActionResult Index(string searchString)
+        //{
+        //    return View(searchString);
+        //}
+
+        public ActionResult SingleImage(int id)
+        {
+            return View(id);
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

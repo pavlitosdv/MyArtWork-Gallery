@@ -10,7 +10,7 @@ namespace GroupProject
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js",
-                        "~/Scripts/datatables/jquery.datatables.js",
+                        "~/Scripts/datatables/jquery.datatables.js",//
                         "~/Scripts/datatables/datatables.bootstrap.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -26,7 +26,7 @@ namespace GroupProject
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/datatables/css/datatables.bootstrap.css",
+                      "~/Content/datatables/css/datatables.bootstrap.css",//
                       "~/Content/site.css"));
         }
     }
