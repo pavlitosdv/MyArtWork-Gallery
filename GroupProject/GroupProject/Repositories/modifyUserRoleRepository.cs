@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -15,7 +16,8 @@ namespace GroupProject.Repositories
 
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                users = db.Users.ToList();
+                users = db.Users.Include("Roles").ToList();
+                //users = db.Users.ToList();
             }
 
             return users;

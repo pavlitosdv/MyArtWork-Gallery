@@ -79,5 +79,19 @@ namespace GroupProject.Repositories
             return artwork;
         }
         #endregion
+
+        #region Search Bar ArtWorks
+        public IEnumerable<ArtWork> SearchArtWorks(string searchTerm)
+        {
+            IEnumerable<ArtWork> artWorks;
+
+            using (var db = new ApplicationDbContext())
+            {
+                artWorks = db.ArtWorks.Include("Tags")
+                            .Where(i => i.Name.Contains(searchTerm)).ToList();                                     
+            }
+            return artWorks;
+        }
+        #endregion
     }
 }

@@ -1,9 +1,15 @@
 ﻿@model  IEnumerable<GroupProject.Models.ApplicationUser>
-
+@using Microsoft.AspNet.Identity.EntityFramework;
 @{
     ViewBag.Title = "Index";
+    var roles = (List<IdentityRole>)ViewBag.Roles;
+    var userRoleIds = Model.Select(i => i.Roles);
+    List<string> userRoleNames = new List<string>();
+    foreach(var item in userRoleIds)
+    {
+        userRoleNames.Add(roles.SingleOrDefault(r => r.Id.Equals(item.ElementAt(0).RoleId)).Name);
+    }
 }
-
 <h2>Index</h2>
 
 <table class="table table-striped">
@@ -15,16 +21,19 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @for (int i = 0; i < Model.Count(); i++)
         {
             <tr>
-                <td>@item.Email</td>
-                @*<td>@item.Roles</td>*@
+                <td>@Model.ElementAt(i).Email</td>
+                <td>@*@item.Roles*@ @*@Model.Roles.Where(i => i.Id == Model.ApplicationUser.Roles.ElementAt(0).RoleId).Name*@</td>
+                <td>@userRoleNames[i]</td>
                 <td>
-                    @Html.ActionLink("View more", "RegisterRoleToUser", "Admin", new { id = item.Id }, null)
-                </td>            
-         
-               
+                    @Html.ActionLink("Change Role", "RegisterRoleToUser", "Admin", new { id = Model.ElementAt(i).Id }, null)
+                </td>
+                <td>
+                    @Html.ActionLink("Remove Role", "RemoveRoleFromUser", "Admin", new { id = Model.ElementAt(i).Id }, null)
+                </td>
+
             </tr>
         }
     </tbody>
