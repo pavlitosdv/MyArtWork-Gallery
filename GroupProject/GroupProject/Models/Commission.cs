@@ -12,6 +12,8 @@ namespace GroupProject.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
+        #region Fields Data
+
         [Required]
         public double Price { get; set; }
 
@@ -24,9 +26,23 @@ namespace GroupProject.Models
         [FutureDate]
         public DateTime Deadline { get; set; }
 
-       
+        #endregion
 
+        #region Navigation Properties
 
+        #region A User that make a Commission
+        public string UserId { get; set; }
+
+        public virtual ApplicationUser User { get; set; }
+        #endregion
+
+        #region An Artist that accept the Commission
+        public string ArtistId { get; set; }
+
+        public virtual ApplicationUser Artist { get; set; }
+        #endregion
+
+        #endregion
 
     }
 }

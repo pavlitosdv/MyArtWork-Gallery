@@ -13,13 +13,7 @@ namespace GroupProject.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        #region An ArtWork belongs to one and only one Artist
-        [Display(Name = "Artist")]
-        public int ArtistId { get; set; }
-
-        [ForeignKey("ArtistId")]
-        public virtual Artist Artist { get; set; }
-        #endregion
+        #region Fields Data
 
         [Required]
         [MaxLength(50)]
@@ -47,16 +41,18 @@ namespace GroupProject.Models
         [DisplayFormat(DataFormatString = "{0:d/M/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DatePublished { get; set; }
 
-        #region An ArtWork may have many Tags that charactetize  it
+        #endregion
+
+        #region Navigation Properties
+
+        #region An ArtWork must have an Artist
+        public virtual ApplicationUser Artist { get; set; }
+        #endregion
+
+        #region An ArtWork may have many Tags that charactetize it
         public virtual ICollection<Tag> Tags { get; set; }
-        #endregion
+        #endregion  
 
-        #region Many Users may prefer this specific ArtWork 
-        public virtual ICollection<User> UsersFavourites {get; set;}
-        #endregion
-
-        #region Many Artists may prefer this specific ArtWork
-        public virtual ICollection<Artist> ArtistsFavourites { get; set; }
         #endregion
     }
 }

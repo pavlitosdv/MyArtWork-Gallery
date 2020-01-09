@@ -16,7 +16,13 @@ namespace GroupProject.Models
         [MaxLength(50)]
         public string Name { get; set; }
 
-        // A Tag may characterize many ArtWorks
+        #region Navigation Properties
+
+        #region A Tag may characterize zero, one or many ArtWorks
         public virtual ICollection<ArtWork> ArtWorks { get; set; }
+        #endregion
+
+        #endregion
+
     }
 }

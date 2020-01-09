@@ -1,13 +1,4 @@
-﻿//using Microsoft.AspNet.Identity;
-//using Microsoft.AspNet.Identity.EntityFramework;
-//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Security.Claims;
-//using System.Threading.Tasks;
-//using System.Web;
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
@@ -21,12 +12,13 @@ namespace GroupProject.Models
    
     public class ApplicationUser : IdentityUser
     {
+        #region Navigation Properties
+        public virtual ICollection<ArtWork> MyArtWorks { get; set; }
 
-        public string? ProfilePicture { get; set; }
+        public virtual ICollection<Commission> Commissions { get; set; }
 
-
-        //  A User may have many preferences  ArtWorks
-        public  ICollection<ArtWork> Preferences { get; set; }
+        public virtual ICollection<Preference> Preferences { get; set; }
+        #endregion
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
