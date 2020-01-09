@@ -40,11 +40,11 @@ namespace GroupProject.Models
         public virtual ICollection<Tag> Tags { get; set; }
 
         public virtual ICollection<ApplicationUser> MyFans { get; set; }
-        //public string ArtistId { get; set; }
+        public string ArtistId { get; set; }
 
-        //[Required]
-        //[ForeignKey("ArtistId")]
-        //public ApplicationUser Artist { get; set; }
+        [Required]
+        [ForeignKey("ArtistId")]
+        public ApplicationUser Artist { get; set; }
 
 
 
