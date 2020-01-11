@@ -124,7 +124,7 @@ namespace GroupProject.Controllers
                 userId = db.Users.SingleOrDefault(i => i.Id == userRole.ApplicationUser.Id);
             }
 
-            await this.UserManager.RemoveFromRoleAsync(userId.Id, removeRole);
+            await this.UserManager.RemoveFromRoleAsync(userId.Id, removeRole.ToString());
 
             await this.UserManager.AddToRoleAsync(userId.Id, userRole.RegisterViewModel.Role);
             //await UserManager.UpdateAsync(user);
