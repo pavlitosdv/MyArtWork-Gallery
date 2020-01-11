@@ -258,6 +258,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ModifyUserRoleController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\TagController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -527,11 +528,13 @@
     <Content Include="Views\Admin\Users.cshtml" />
     <Content Include="Views\Admin\Artworks.cshtml" />
     <Content Include="Views\Admin\Tags.cshtml" />
+    <Content Include="Views\Admin\RemoveRoleFromUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\API\" />
     <Folder Include="Views\ArtWork\" />
+    <Folder Include="Views\Search\" />
     <Folder Include="Views\Tag\" />
   </ItemGroup>
   <ItemGroup>

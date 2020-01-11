@@ -211,47 +211,47 @@ namespace GroupProject.Controllers
         //}
 
 
-        [HttpGet]
-        public ActionResult RegisterRole()
-        {
-            //ViewBag.Role = new SelectList(db.Roles.ToList(), "Role", "Role");
-            //ViewBag.UserName = new SelectList(db.Users.ToList(), "UserName", "UserName");
+        //[HttpGet]
+        //public ActionResult RegisterRole()
+        //{
+        //    //ViewBag.Role = new SelectList(db.Roles.ToList(), "Role", "Role");
+        //    //ViewBag.UserName = new SelectList(db.Users.ToList(), "UserName", "UserName");
 
-            List<ApplicationUser> userList = null;
-            using (ApplicationDbContext db = new ApplicationDbContext())
-            {
-                userList = db.Users.ToList();
-            }
-            ViewBag.Users = userList;
+        //    List<ApplicationUser> userList = null;
+        //    using (ApplicationDbContext db = new ApplicationDbContext())
+        //    {
+        //        userList = db.Users.ToList();
+        //    }
+        //    ViewBag.Users = userList;
 
-            List<IdentityRole> roles = null;
-            using (ApplicationDbContext db = new ApplicationDbContext())
-            {
-                roles = db.Roles.ToList();
-            }
-            ViewBag.Roles = roles;
+        //    List<IdentityRole> roles = null;
+        //    using (ApplicationDbContext db = new ApplicationDbContext())
+        //    {
+        //        roles = db.Roles.ToList();
+        //    }
+        //    ViewBag.Roles = roles;
 
-            return View();
-        }
+        //    return View();
+        //}
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> RegisterRole(RegisterViewModel model, ApplicationUser user)
-        {
-            var userId = db.Users.Where(i => i.Email == user.Email).Select(s => s.Id);
-            //var removeRole = db.Users.Where(i => i.Email == user.Email).Select(s => s.Roles).ToString();
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<ActionResult> RegisterRole(RegisterViewModel model, ApplicationUser user)
+        //{
+        //    var userId = db.Users.Where(i => i.Email == user.Email).Select(s => s.Id);
+        //    //var removeRole = db.Users.Where(i => i.Email == user.Email).Select(s => s.Roles).ToString();
 
-            string updatedId = "";
-            foreach(var i in userId)
-            {
-                updatedId = i.ToString();
-            }
+        //    string updatedId = "";
+        //    foreach(var i in userId)
+        //    {
+        //        updatedId = i.ToString();
+        //    }
 
-            //await this.UserManager.RemoveFromRoleAsync(updatedId, removeRole);
-            await this.UserManager.AddToRoleAsync(updatedId, model.Role);
-            //await UserManager.UpdateAsync(user);
-            return RedirectToAction("Index", "Home");
-        }
+        //    //await this.UserManager.RemoveFromRoleAsync(updatedId, removeRole);
+        //    await this.UserManager.AddToRoleAsync(updatedId, model.Role);
+        //    //await UserManager.UpdateAsync(user);
+        //    return RedirectToAction("Index", "Home");
+        //}
 
         [HttpGet]
         public ActionResult RemoveRoleFromUser()
