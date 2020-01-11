@@ -1,13 +1,112 @@
 ﻿@{
-    ViewBag.Title = "Admin";
+	Layout = "~/Views/Shared/_AdminPanel.cshtml";
+	ViewBag.Title = "Admin";
 }
 
+	<script>
+window.onload = function () {
 
+var barchart = new CanvasJS.Chart("barContainer", {
+	animationEnabled: true,
+	title: {
+		text: "Women Nobel Laureates"
+	},
+	subtitles: [{
+		text: "from 1903 to 2015"
+	}],
+	axisY: {
+		title: "Number of Nobel Prizes",
+		gridThickness: 0
+	},
+	data: [{
+		type: "bar",
+		indexLabel: "{y}",
+		dataPoints: @Html.Raw(ViewBag.DataPointsBar)
+	}]
+});
+	barchart.render();
 
+	var piechart = new CanvasJS.Chart("pieContainer", {
+	exportEnabled: true,
+	animationEnabled: true,
+	theme: "light2",
+	title: {
+		text: "Most Popular Tags"
+	},
+	legend: {
+		cursor: "pointer",
+		itemclick: explodePie,
+		verticalAlign: "center",
+		horizontalAlign: "right"
+	},
+	data: [{
+		type: "pie",
+		showInLegend: true,
+		toolTipContent: "{name}: <strong>{y}%</strong>",
+		startAngle: -45,
+		indexLabel: "{name} ({y}%)",
+		indexLabelFontColor: "#12122B",
+		indexLabelPlacement: "inside",
+		indexLabelFontSize: 15,
+		dataPoints: @Html.Raw(ViewBag.DataPointsPie)
+	}]
+});
+piechart.render();
 
-<div>Admin Panel</div>
-
-
-
+function explodePie(e) {
+	if (typeof (e.dataSeries.dataPoints[e.dataPointIndex].exploded) === "undefined" || !e.dataSeries.dataPoints[e.dataPointIndex].exploded) {
+		e.dataSeries.dataPoints[e.dataPointIndex].exploded = true;
+	} else {
+		e.dataSeries.dataPoints[e.dataPointIndex].exploded = false;
+	}
+	e.piechart.render();
 }
 
+}
+	</script>
+	@*<script>
+window.onload = function () {
+
+var piechart = new CanvasJS.Chart("pieContainer", {
+	exportEnabled: true,
+	animationEnabled: true,
+	theme: "light2",
+	title: {
+		text: "Most Popular Tags"
+	},
+	legend: {
+		cursor: "pointer",
+		itemclick: explodePie,
+		verticalAlign: "center",
+		horizontalAlign: "right"
+	},
+	data: [{
+		type: "pie",
+		showInLegend: true,
+		toolTipContent: "{name}: <strong>{y}%</strong>",
+		startAngle: -45,
+		indexLabel: "{name} ({y}%)",
+		indexLabelFontColor: "#12122B",
+		indexLabelPlacement: "inside",
+		indexLabelFontSize: 15,
+		dataPoints: @Html.Raw(ViewBag.DataPointsPie)
+	}]
+});
+piechart.render();
+
+function explodePie(e) {
+	if (typeof (e.dataSeries.dataPoints[e.dataPointIndex].exploded) === "undefined" || !e.dataSeries.dataPoints[e.dataPointIndex].exploded) {
+		e.dataSeries.dataPoints[e.dataPointIndex].exploded = true;
+	} else {
+		e.dataSeries.dataPoints[e.dataPointIndex].exploded = false;
+	}
+	e.piechart.render();
+}
+
+}
+	</script>*@
+
+	<div id="barContainer" style="height: 370px; width: 100%;"></div>
+	<div id="pieContainer" style="height: 370px; width: 100%;"></div>
+	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+							 
