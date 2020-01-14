@@ -16,6 +16,7 @@ namespace GroupProject.Controllers
 {
     public class AdminController : Controller
     {
+        public AdminRepository _adminRepository = new AdminRepository();
         private ApplicationUserManager _userManager;
         public ApplicationDbContext db;
 
@@ -65,6 +66,16 @@ namespace GroupProject.Controllers
 
         public ActionResult Users()
         {
+            //var users = _adminRepository.GetUsers();
+
+            //List<IdentityRole> roles = null;
+            //using (ApplicationDbContext db = new ApplicationDbContext())
+            //{
+            //    roles = db.Roles.ToList();
+            //}
+            //ViewBag.Roles = roles;
+
+            //return View(users);
             return View();
         }
 
@@ -78,46 +89,14 @@ namespace GroupProject.Controllers
             var tags = _tagsRepository.GetTags();
             return View(tags);
         }
-
-        //[HttpGet]
-        //public ActionResult RegisterRole(string id)
-        //{
-
-        //    ApplicationUser userList;
-        //    using (ApplicationDbContext db = new ApplicationDbContext())
-        //    {
-        //        userList = db.Users.Find(id);
-        //    }
-        //    ViewBag.Users = userList;
-
-        //    List<IdentityRole> roles = null;
-        //    using (ApplicationDbContext db = new ApplicationDbContext())
-        //    {
-        //        roles = db.Roles.ToList();
-        //    }
-        //    ViewBag.Roles = roles;
-
-        //    return View();
-        //}
-
+        
         
         [HttpGet]
         public ActionResult RegisterRoleToUser(string id)
         {
-            //ViewBag.Role = new SelectList(db.Roles.ToList(), "Role", "Role");
-            //ViewBag.UserName = new SelectList(db.Users.ToList(), "UserName", "UserName");
-            
             UserRoleViewModel u = new UserRoleViewModel();
             u.ApplicationUser= db.Users.SingleOrDefault(i => i.Id == id);
-            //u.ApplicationUser = (ApplicationUser)db.Users.Where(i => i.Id == id);
-
-            //List<ApplicationUser> userList = null;
-            //using (ApplicationDbContext db = new ApplicationDbContext())
-            //{
-            //    userList = db.Users.ToList();
-            //}
-            //ViewBag.Users = userList;
-
+            
             List<IdentityRole> roles = null;
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
@@ -131,22 +110,12 @@ namespace GroupProject.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> RegisterRoleToUser(UserRoleViewModel userRole)
-        {
-            //var removeRole = db.Users.Where(i => i.Id == userRole.ApplicationUser.Id).Select(i => i.Id == userRole.RegisterViewModel.Role).ToString();
-            //var RoleId = db.Users.SingleOrDefault(i => i.Id == userRole.ApplicationUser.Id).Roles.ElementAt(0).RoleId;
-            //var removeRole = db.Roles.SingleOrDefault(i => i.Id.Equals(RoleId)).Name;
-
-            //var RoleId = db.Users.Include("Roles").SingleOrDefault(i => i.Id == userRole.ApplicationUser.Id); /*.Roles.ElementAt(0).RoleId;*/
-
+        {           
             var removeRole = UserManager.GetRoles(userRole.ApplicationUser.Id);
-
-            //var rolesArray = db.Roles.GetRolesForUser();
-            //await this.UserManager.RemoveFromRoleAsync(userRole.ApplicationUser.Id, removeRole);
 
             ApplicationUser userId;
             using (var db = new ApplicationDbContext())
             {
-                //userId = db.Users.Where(i => i.Email == user.Email).Select(s => s.Id);
                 userId = db.Users.SingleOrDefault(i => i.Id == userRole.ApplicationUser.Id);
             }
 
@@ -188,53 +157,5 @@ namespace GroupProject.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        #region Arxiko RegisterRoleToUser
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> RegisterRoleToUser(RegisterViewModel model, ApplicationUser user)
-        //{
-        //    ApplicationUser userId;
-        //    using (var db = new ApplicationDbContext())
-        //    {
-        //        //userId = db.Users.Where(i => i.Email == user.Email).Select(s => s.Id);
-        //        userId = db.Users.SingleOrDefault(i => i.Id == user.Id);
-        //    }
-
-        //    //var removeRole = db.Users.Where(i => i.Email == user.Email).Select(s => s.Roles).ToString();
-
-        //    //string updatedId = "";
-        //    //foreach (var i in userId)
-        //    //{
-        //    //    updatedId = i.ToString();
-        //    //}
-
-        //    //await this.UserManager.RemoveFromRoleAsync(updatedId, removeRole);
-        //    await this.UserManager.AddToRoleAsync(userId.Id.ToString(), model.Role);
-        //    //await UserManager.UpdateAsync(user);
-        //    return RedirectToAction("Index", "Home");
-        //}
-
-        //[HttpGet]
-        //public ActionResult RegisterRole(string id)
-        //{
-
-        //    ApplicationUser userList;
-        //    using (ApplicationDbContext db = new ApplicationDbContext())
-        //    {
-        //        userList = db.Users.Find(id);
-        //    }
-        //    ViewBag.Users = userList;
-
-        //    List<IdentityRole> roles = null;
-        //    using (ApplicationDbContext db = new ApplicationDbContext())
-        //    {
-        //        roles = db.Roles.ToList();
-        //    }
-        //    ViewBag.Roles = roles;
-
-        //    return View();
-        //}
-
-        #endregion
     }
 }
