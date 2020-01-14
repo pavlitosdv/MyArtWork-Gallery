@@ -1,4 +1,5 @@
 ﻿using GroupProject.Models;
+using GroupProject.Repositories.ApiRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,8 @@ namespace GroupProject.Controllers.API
     public class AdminAPIController : ApiController
     {
         AdminApiRepository _adminApiRepository = new AdminApiRepository();
+
+
         [HttpGet]
         public IHttpActionResult Get()
         {

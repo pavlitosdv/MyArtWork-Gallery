@@ -10,11 +10,13 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Newtonsoft.Json;
+using GroupProject.Repositories;
 
 namespace GroupProject.Controllers
 {
     public class AdminController : Controller
     {
+        public AdminRepository _adminRepository = new AdminRepository();
         private ApplicationUserManager _userManager;
         public ApplicationDbContext db;
         public ApplicationUserManager UserManager
@@ -62,6 +64,16 @@ namespace GroupProject.Controllers
 
         public ActionResult Users()
         {
+            //var users = _adminRepository.GetUsers();
+
+            //List<IdentityRole> roles = null;
+            //using (ApplicationDbContext db = new ApplicationDbContext())
+            //{
+            //    roles = db.Roles.ToList();
+            //}
+            //ViewBag.Roles = roles;
+
+            //return View(users);
             return View();
         }
 
