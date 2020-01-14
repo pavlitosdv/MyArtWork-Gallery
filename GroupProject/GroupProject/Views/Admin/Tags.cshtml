@@ -1,8 +1,107 @@
-﻿
+﻿@model IEnumerable<GroupProject.Models.Tag>
 @{
     ViewBag.Title = "Tags";
     Layout = "~/Views/Shared/_AdminPanel.cshtml";
 }
+<!-- Modal HTML embedded directly into document -->
+    <div id="newTag" class="modal">
+        <h1>New Tag</h1>
+            <div>
+                <label for="name">Name</label>
+            </div>
+            <div>
+                <input id="tagName" name="name" type="text" />
+            </div>
+            <div>
+                <button type="button" class="btn btn-primary" id="create">Create</button>
+            </div>
+        <a id="modal-close" href="#" rel="modal:close">Close</a>
+    </div>
 
-<h2>Tags</h2>
+<!-- Link to open the modal -->
+<p><a href="#newTag" class="btn btn-primary" rel="modal:open">Add Tag</a></p>
+<p id="message"></p>
 
+<table id="tags" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @*@foreach (var Tag in Model)
+        {
+            <tr>
+                <td>@Tag.Name</td>
+                <td><a>Edit</a> <a>Delete</a></td>
+            </tr>
+        }*@
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+
+            //function listTags() {
+            //    $.ajax({
+            //    dataType: 'json',
+            //    url: '/api/tags',
+            //        success: function (data) {
+            //            $('#tags tbody').empty();
+            //            data.forEach(function (tag) {
+            //                $('#tags tbody').append('<tr><td>' + tag.Name
+            //                    + '</td><td><a>Edit</a> <a>Delete</a></td></tr>')
+            //            });
+
+            //    },
+            //    error: function (error) {
+            //        console.log(error);
+            //    }
+            //});
+            //}
+
+            //listTags();
+
+            var table = $('#tags').DataTable({
+                ajax: {
+                    url: "/api/tags",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "Name"
+                    },
+                    {
+                        render: function () {
+                            return "<td><a>Edit</a> <a>Delete</a></td>";
+                        }
+                    }
+                ]
+            });
+
+            $('#create').click(function () {
+                var tag = new Object();
+                tag.Name = $('#tagName').val();
+                console.log(tag);
+                $.ajax({
+                    url: '/api/tags',
+                    type: 'post',
+                    //dataType: 'json',
+                    //contentType: 'application/json',
+                    data: tag,
+                    success: function () {
+                        $('#modal-close').click();
+                        table.ajax.reload();
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            });
+
+        });
+
+    </script>
+}

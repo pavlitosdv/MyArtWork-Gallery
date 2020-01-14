@@ -47,11 +47,11 @@ namespace GroupProject.Models
         #region Navigation Properties
 
         #region An ArtWork must have an Artist
-        public virtual ApplicationUser Artist { get; set; }
+        public ApplicationUser Artist { get; set; }
         #endregion
 
         #region An ArtWork may have many Tags that charactetize it
-        public virtual ICollection<Tag> Tags { get; set; }
+        public ICollection<Tag> Tags { get; set; }
         #endregion  
 
         #endregion

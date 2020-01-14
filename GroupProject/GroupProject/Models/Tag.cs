@@ -20,7 +20,7 @@ namespace GroupProject.Models
         #region Navigation Properties
 
         #region A Tag may characterize zero, one or many ArtWorks
-        public virtual ICollection<ArtWork> ArtWorks { get; set; }
+        public ICollection<ArtWork> ArtWorks { get; set; }
         #endregion
 
         #endregion

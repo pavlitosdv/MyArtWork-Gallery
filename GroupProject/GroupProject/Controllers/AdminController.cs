@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Newtonsoft.Json;
+using GroupProject.Repositories;
 
 namespace GroupProject.Controllers
 {
@@ -17,6 +18,8 @@ namespace GroupProject.Controllers
     {
         private ApplicationUserManager _userManager;
         public ApplicationDbContext db;
+
+        TagsRepository _tagsRepository = new TagsRepository();
         public ApplicationUserManager UserManager
         {
             get
@@ -72,7 +75,8 @@ namespace GroupProject.Controllers
 
         public ActionResult Tags()
         {
-            return View();
+            var tags = _tagsRepository.GetTags();
+            return View(tags);
         }
 
         //[HttpGet]
@@ -146,7 +150,7 @@ namespace GroupProject.Controllers
                 userId = db.Users.SingleOrDefault(i => i.Id == userRole.ApplicationUser.Id);
             }
 
-            await this.UserManager.RemoveFromRoleAsync(userId.Id, removeRole);
+            await this.UserManager.RemoveFromRoleAsync(userId.Id, removeRole.ToString());
 
             await this.UserManager.AddToRoleAsync(userId.Id, userRole.RegisterViewModel.Role);
             //await UserManager.UpdateAsync(user);
