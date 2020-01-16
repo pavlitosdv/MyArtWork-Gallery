@@ -295,6 +295,7 @@
     <Compile Include="Repositories\ArtWorksRepository.cs" />
     <Compile Include="Repositories\modifyUserRoleRepository.cs" />
     <Compile Include="Repositories\TagsRepository.cs" />
+    <Compile Include="Repositories\_artistSearchRepository.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
