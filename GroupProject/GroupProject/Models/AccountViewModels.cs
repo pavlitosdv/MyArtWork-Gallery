@@ -81,7 +81,7 @@ namespace GroupProject.Models
         public string ConfirmPassword { get; set; }
 
         [Required]
-        public virtual string Role { get; set; }
+        public string Role { get; set; }
     }
 
     public class ResetPasswordViewModel

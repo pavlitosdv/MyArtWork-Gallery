@@ -13,11 +13,11 @@ namespace GroupProject.Models
     public class ApplicationUser : IdentityUser
     {
         #region Navigation Properties
-        public virtual ICollection<ArtWork> MyArtWorks { get; set; }
+        public ICollection<ArtWork> MyArtWorks { get; set; }
 
-        public virtual ICollection<Commission> Commissions { get; set; }
+        public ICollection<Commission> Commissions { get; set; }
 
-        public virtual ICollection<Preference> Preferences { get; set; }
+        public ICollection<Preference> Preferences { get; set; }
         #endregion
 
 

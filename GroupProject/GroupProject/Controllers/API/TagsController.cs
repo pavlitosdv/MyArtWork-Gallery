@@ -33,5 +33,37 @@ namespace GroupProject.Controllers.API
 
             return Ok();
         }
+
+        [HttpPut]
+        public IHttpActionResult EditTag([FromBody]Tag tag)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            var updated = _tags.UpdateTag(tag);
+
+            if (!updated)
+            {
+                return BadRequest();
+            }
+
+            return Ok();
+        }
+
+        [HttpDelete]
+        public IHttpActionResult DeleteTag(int Id)
+        {
+
+            bool removed = _tags.DeleteTag(Id);
+
+            if (!removed)
+            {
+                return NotFound();
+            }
+
+            return Ok();
+        }
     }
 }

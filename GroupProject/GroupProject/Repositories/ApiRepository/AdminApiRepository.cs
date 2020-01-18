@@ -12,7 +12,7 @@ namespace GroupProject.Repositories.ApiRepository
     public class AdminApiRepository
     {
         private ApplicationUserManager _userManager;
-        public ApplicationDbContext db;
+        //public ApplicationDbContext db;
 
         public ApplicationUserManager UserManager
         {
@@ -32,7 +32,8 @@ namespace GroupProject.Repositories.ApiRepository
 
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                users = db.Users.Include("Roles").ToList();
+                users = db.Users.Include("Roles").Include("Claims").Include("Logins").ToList();
+                //users = db.Users.ToList();
             }
 
             return users;

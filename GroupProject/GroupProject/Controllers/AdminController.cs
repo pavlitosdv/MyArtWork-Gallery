@@ -11,12 +11,13 @@ using System.Web;
 using System.Web.Mvc;
 using Newtonsoft.Json;
 using GroupProject.Repositories;
+using GroupProject.Repositories.ApiRepository;
 
 namespace GroupProject.Controllers
 {
     public class AdminController : Controller
     {
-        public AdminRepository _adminRepository = new AdminRepository();
+        public AdminApiRepository _adminApiRepository = new AdminApiRepository();
         private ApplicationUserManager _userManager;
         public ApplicationDbContext db;
 
@@ -40,16 +41,25 @@ namespace GroupProject.Controllers
         // GET: Admin
         public ActionResult Index()
         {
+
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                var tags = db.Tags.ToList();
+                var users = db.Users.ToList();
+                var artworks = db.ArtWorks.ToList();
+                var commissions = db.Commissions.ToList();
+            
+
             List<DataPointBar> dataPointsBar = new List<DataPointBar>();
             List<DataPointPie> dataPointsPie = new List<DataPointPie>();
 
-            dataPointsBar.Add(new DataPointBar("Economics", 1));
-            dataPointsBar.Add(new DataPointBar("Physics", 2));
-            dataPointsBar.Add(new DataPointBar("Literature", 4));
-            dataPointsBar.Add(new DataPointBar("Chemistry", 4));
-            dataPointsBar.Add(new DataPointBar("Literature", 9));
-            dataPointsBar.Add(new DataPointBar("Physiology or Medicine", 11));
-            dataPointsBar.Add(new DataPointBar("Peace", 13));
+            dataPointsBar.Add(new DataPointBar("Tags", tags.Count()));
+            dataPointsBar.Add(new DataPointBar("Users", users.Count()));
+            dataPointsBar.Add(new DataPointBar("Artworks", artworks.Count()));
+            dataPointsBar.Add(new DataPointBar("Commissions", commissions.Count()));
+            //dataPointsBar.Add(new DataPointBar("Literature", 9));
+            //dataPointsBar.Add(new DataPointBar("Physiology or Medicine", 11));
+            //dataPointsBar.Add(new DataPointBar("Peace", 13));
 
             dataPointsPie.Add(new DataPointPie("Simple Users", 26));
             dataPointsPie.Add(new DataPointPie("Artists", 20));
@@ -60,23 +70,22 @@ namespace GroupProject.Controllers
 
             ViewBag.DataPointsPie = JsonConvert.SerializeObject(dataPointsPie);
             ViewBag.DataPointsBar = JsonConvert.SerializeObject(dataPointsBar);
-
+            }
             return View();
         }
 
         public ActionResult Users()
         {
-            //var users = _adminRepository.GetUsers();
+            var users = _adminApiRepository.GetUsers();
 
-            //List<IdentityRole> roles = null;
-            //using (ApplicationDbContext db = new ApplicationDbContext())
-            //{
-            //    roles = db.Roles.ToList();
-            //}
-            //ViewBag.Roles = roles;
+            List<IdentityRole> roles = null;
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                roles = db.Roles.ToList();
+            }
+            ViewBag.Roles = roles;
 
-            //return View(users);
-            return View();
+            return View(users);
         }
 
         public ActionResult Artworks()

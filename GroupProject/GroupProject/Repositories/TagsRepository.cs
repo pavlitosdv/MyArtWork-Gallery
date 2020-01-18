@@ -41,7 +41,7 @@ namespace GroupProject.Repositories
         #endregion
 
         #region UpdateTag
-        public void UpdateTag(Tag tag)
+        public bool UpdateTag(Tag tag)
         {
             Throw.IfNull(tag, nameof(tag));
 
@@ -51,11 +51,12 @@ namespace GroupProject.Repositories
                 db.Entry(tag).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
             }
+            return true;
         }
         #endregion
 
         #region DeleteTag
-        public void DeleteTag(int id)
+        public bool DeleteTag(int id)
         {
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
@@ -63,6 +64,7 @@ namespace GroupProject.Repositories
                 db.Tags.Remove(tag);
                 db.SaveChanges();
             }
+            return true;
         }
         #endregion
 

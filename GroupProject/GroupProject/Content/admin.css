@@ -21,9 +21,13 @@ html, body {
         display: initial !important;
     }*/
 
-    .row::before, .row::after {
-        display: initial !important;
-    }
+.row::before, .row::after {
+    display: initial !important;
+}
+
+.table.table-bordered {
+    border-radius: 10px;
+}
 
 #responsive-admin-menu {
     float: left;

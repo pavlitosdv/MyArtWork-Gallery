@@ -1,68 +1,57 @@
-﻿@model IEnumerable<GroupProject.Models.Tag>
+﻿@*@model IEnumerable<GroupProject.Models.Tag>*@
 @{
     ViewBag.Title = "Tags";
     Layout = "~/Views/Shared/_AdminPanel.cshtml";
 }
 <!-- Modal HTML embedded directly into document -->
-    <div id="newTag" class="modal">
-        <h1>New Tag</h1>
-            <div>
-                <label for="name">Name</label>
-            </div>
-            <div>
-                <input id="tagName" name="name" type="text" />
-            </div>
-            <div>
-                <button type="button" class="btn btn-primary" id="create">Create</button>
-            </div>
-        <a id="modal-close" href="#" rel="modal:close">Close</a>
+<div id="newTag" class="modal">
+    <h1>New Tag</h1>
+    <div>
+        <label for="name">Name</label>
     </div>
+    <div>
+        <input id="tagNameNew" name="name" type="text" />
+    </div>
+    <div>
+        <button type="button" class="btn btn-primary" id="create">Create</button>
+    </div>
+    <a id="modal-close" href="#" rel="modal:close">Close</a>
+</div>
+
+<div id="editTag" class="modal">
+    <h1>Edit Tag</h1>
+    <input type="hidden" id="tagIdEdit" name="tagId" value="" />
+    <div>
+        <label for="name">Name</label>
+    </div>
+    <div>
+        <input id="tagNameEdit" name="name" type="text" />
+    </div>
+    <div>
+        <button type="button" class="btn btn-primary" id="edit">Edit</button>
+    </div>
+    <a id="modal-close" href="#" rel="modal:close">Close</a>
+</div>
 
 <!-- Link to open the modal -->
 <p><a href="#newTag" class="btn btn-primary" rel="modal:open">Add Tag</a></p>
-<p id="message"></p>
 
 <table id="tags" class="table table-bordered table-hover">
     <thead>
         <tr>
+            @*<th>Id</th>*@
             <th>Name</th>
             <th>Actions</th>
         </tr>
     </thead>
     <tbody>
-        @*@foreach (var Tag in Model)
-        {
-            <tr>
-                <td>@Tag.Name</td>
-                <td><a>Edit</a> <a>Delete</a></td>
-            </tr>
-        }*@
+
     </tbody>
 </table>
 
 @section Scripts {
     <script>
         $(document).ready(function () {
-
-            //function listTags() {
-            //    $.ajax({
-            //    dataType: 'json',
-            //    url: '/api/tags',
-            //        success: function (data) {
-            //            $('#tags tbody').empty();
-            //            data.forEach(function (tag) {
-            //                $('#tags tbody').append('<tr><td>' + tag.Name
-            //                    + '</td><td><a>Edit</a> <a>Delete</a></td></tr>')
-            //            });
-
-            //    },
-            //    error: function (error) {
-            //        console.log(error);
-            //    }
-            //});
-            //}
-
-            //listTags();
 
             var table = $('#tags').DataTable({
                 ajax: {
@@ -74,17 +63,19 @@
                         data: "Name"
                     },
                     {
-                        render: function () {
-                            return "<td><a>Edit</a> <a>Delete</a></td>";
-                        }
+                        //data: "Id",
+                        render: function (data, type, tag) {
+                            return "<td><a style=' color: #ffe066' class='editTagOpen' href='#editTag' rel='modal:open' data-id='" + tag.Id + "' data-name='" + tag.Name + "'>Edit</a> -- <a style='color: #ff4d4d' class='deleteTag' href='#' data-id='" + tag.Id + "'>Delete</a></td>";
+                        },
+                        searchable: false,
+                        orderable: false
                     }
                 ]
             });
 
             $('#create').click(function () {
                 var tag = new Object();
-                tag.Name = $('#tagName').val();
-                console.log(tag);
+                tag.Name = $('#tagNameNew').val();
                 $.ajax({
                     url: '/api/tags',
                     type: 'post',
@@ -92,7 +83,7 @@
                     //contentType: 'application/json',
                     data: tag,
                     success: function () {
-                        $('#modal-close').click();
+                        $('#newTag #modal-close').click();
                         table.ajax.reload();
                     },
                     error: function (error) {
@@ -101,6 +92,49 @@
                 });
             });
 
+            $(document).on('click', '.editTagOpen', function (e) {
+                var tag = new Object();
+                tag.Name = e.target.getAttribute('data-name');
+                tag.Id = e.target.getAttribute('data-id');
+                $('#tagNameEdit').val(tag.Name);
+                $('#tagIdEdit').val(tag.Id);
+            });
+
+            $(document).on('click', '.deleteTag', function (e) {
+                var cnf = confirm("Are you sure you wish to delete this tag?");
+                if (cnf) {
+                    var del = e.target.getAttribute('data-id');
+                    $.ajax({
+                        url: '/api/tags/' + del,
+                        type: 'delete',
+                        success: function () {
+                            table.ajax.reload();
+                        },
+                        error: function (error) {
+                            console.log(error);
+                        }
+                    });
+                    }
+                });
+
+
+            $('#edit').click(function () {
+                var tag = new Object();
+                tag.Name = $('#tagNameEdit').val();
+                tag.Id = $('#tagIdEdit').val();
+                $.ajax({
+                    url: '/api/tags',
+                    type: 'put',
+                    data: tag,
+                    success: function () {
+                        $('#editTag #modal-close').click();
+                        table.ajax.reload();
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            });
         });
 
     </script>
