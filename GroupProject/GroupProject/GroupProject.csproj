@@ -307,6 +307,7 @@
     <Compile Include="Repositories\AdminRepository.cs" />
     <Compile Include="Repositories\ApiRepository\AdminApiRepository.cs" />
     <Compile Include="Repositories\ArtWorksRepository.cs" />
+    <Compile Include="Repositories\CommissionRepository.cs" />
     <Compile Include="Repositories\modifyUserRoleRepository.cs" />
     <Compile Include="Repositories\TagsRepository.cs" />
     <Compile Include="Repositories\ArtistSearchRepository.cs" />

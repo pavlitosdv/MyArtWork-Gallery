@@ -88,5 +88,7 @@ namespace GroupProject.Models
             #endregion
 
         }
+
+        public System.Data.Entity.DbSet<GroupProject.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 }

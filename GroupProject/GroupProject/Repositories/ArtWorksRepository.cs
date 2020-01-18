@@ -24,6 +24,18 @@ namespace GroupProject.Repositories
         }
         #endregion
 
+        public IEnumerable<ArtWork> GetArtWorks(IEnumerable<int> ids)
+        {
+            List<ArtWork> artWorks = new List<ArtWork>();
+
+            using (var db = new ApplicationDbContext())
+            {
+                artWorks = db.ArtWorks.Where(gig => ids.Contains(gig.Id)).ToList();
+            }
+
+            return artWorks;
+        }
+
         #region AddArtWork
         public void AddArtWork(string name)
         {

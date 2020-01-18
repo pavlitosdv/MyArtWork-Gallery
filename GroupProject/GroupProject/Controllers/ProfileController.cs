@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -25,7 +26,7 @@ namespace GroupProject.Controllers
             //{
             //    LogedInUser = db.Users.SingleOrDefault(i => i.Id == userId);
             //}
-            
+
             //return View(LogedInUser);
             return View();
         }
@@ -33,31 +34,65 @@ namespace GroupProject.Controllers
         public ActionResult Edit()
         {
 
+            UserRoleViewModel u = new UserRoleViewModel();
+
             string userId = User.Identity.GetUserId();
             
             ApplicationUser applicationUser = db.Users.Find(userId);
+            u.ApplicationUser = applicationUser;
+
             if (applicationUser == null)
             {
                 return HttpNotFound();
             }
-            return View(applicationUser);
+            return View(u);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(ApplicationUser applicationUser)
+        public ActionResult Edit(UserRoleViewModel user)
         {
+            string path = "";
+
+            if (user.RegisterViewModel.ProfilePicture != null)
+            {
+                user.ApplicationUser.ProfilePicture = Path.GetFileName(user.RegisterViewModel.ProfilePicture.FileName);
+
+                path = Path.Combine(Server.MapPath("~/ProfilePictures"), user.ApplicationUser.ProfilePicture);
+                user.RegisterViewModel.ProfilePicture.SaveAs(path);
+            }
+
             if (ModelState.IsValid)
             {
-                db.Users.Attach(applicationUser);
-                db.Entry(applicationUser).State = EntityState.Modified;
-                db.SaveChanges();
-               
+                db.Users.Attach(user.ApplicationUser);
+                db.Entry(user.ApplicationUser).State = EntityState.Modified;
+                db.SaveChanges();               
             }
             return RedirectToAction("Index");
             //return View(applicationUser);
         }
 
+        //public ActionResult Edit(ApplicationUser user)
+        //{           
+        //    string path = "";
+
+        //    if (user.ProfilePicture != null)
+        //    {
+        //        path = Path.Combine(Server.MapPath("~/ProfilePictures"),
+        //        user.ProfilePicture.FileName);
+        //        user.ProfilePicture.SaveAs(path);
+        //    }
+
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Users.Attach(user);
+        //        db.Entry(user).State = EntityState.Modified;
+        //        db.SaveChanges();
+
+        //    }
+        //    return RedirectToAction("Index");
+        //    //return View(applicationUser);
+        //}
 
     }
 }
