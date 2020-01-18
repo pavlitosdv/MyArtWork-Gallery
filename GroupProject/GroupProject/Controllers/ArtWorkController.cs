@@ -2,6 +2,7 @@
 using GroupProject.Repositories;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -11,6 +12,8 @@ namespace GroupProject.Controllers
 {
     public class ArtWorkController : Controller
     {
+        public static string guid = Guid.NewGuid().ToString();
+
         ArtWorksRepository _artWorksRepository = new ArtWorksRepository();
 
         // GET: ArtWork      
@@ -28,6 +31,19 @@ namespace GroupProject.Controllers
         [HttpPost]
         public ActionResult Create(ArtWork artwork)
         {
+
+            if (artwork.ImageFile == null)
+            {
+                artwork.Thumbnail = "no_image.jpg";
+            }
+            else
+            {
+                string extension = Path.GetExtension(artwork.ImageFile.FileName);
+                artwork.Thumbnail = guid.ToString() + extension;
+                string fileName = Path.Combine(Server.MapPath("~/ArtWorksImages/"), artwork.Thumbnail);
+                artwork.ImageFile.SaveAs(fileName); 
+            }
+
             if (!ModelState.IsValid)
             {
                 return View(artwork);

@@ -17,15 +17,15 @@ namespace GroupProject.Controllers.API
         [HttpGet]
         public IHttpActionResult Get()
         {
-            _adminApiRepository.GetUsers();
-            return Ok();
+           
+            return Ok(_adminApiRepository.GetUsers());
         }
 
         public IHttpActionResult GetUserById(int id)
         {
-            _adminApiRepository.FindUserById(id);
+           
 
-            return Ok();
+            return Ok(_adminApiRepository.FindUserById(id));
         }
 
         [HttpPut]

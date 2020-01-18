@@ -1,6 +1,7 @@
 ﻿using GroupProject.Models.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -41,6 +42,12 @@ namespace GroupProject.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:d/M/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DatePublished { get; set; }
+
+        public string Thumbnail { get; set; }
+
+        [DisplayName("Upload File")]
+        [NotMapped] 
+        public HttpPostedFileBase ImageFile { get; set; }
 
         #endregion
 
