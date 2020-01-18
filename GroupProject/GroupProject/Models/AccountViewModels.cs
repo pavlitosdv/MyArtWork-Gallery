@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web;
 
 namespace GroupProject.Models
 {
@@ -82,6 +83,9 @@ namespace GroupProject.Models
 
         [Required]
         public string Role { get; set; }
+
+        [Display(Name = "Profile picture")]
+        public HttpPostedFileBase ProfilePicture { get; set; }
     }
 
     public class ResetPasswordViewModel

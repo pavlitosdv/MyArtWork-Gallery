@@ -18,13 +18,13 @@ namespace GroupProject.Models
 
         #region NavigationProperties
 
-        #region A User who express a preference
+        #region A User who comment an ArtWork
         public string UserId { get; set; }
 
-        public ApplicationUser User { get; set; }
+        public IEnumerable<ApplicationUser> User { get; set; }
         #endregion
 
-        #region The ArtWork which is preferred by a User
+        #region The ArtWork which is Liked by a User
         public int ArtWorkId { get; set; }
 
         public ArtWork ArtWork { get; set; }

@@ -12,12 +12,17 @@ namespace GroupProject.Models
    
     public class ApplicationUser : IdentityUser
     {
+        public string ProfilePicture { get; set; }
+
+
         #region Navigation Properties
         public ICollection<ArtWork> MyArtWorks { get; set; }
 
         public ICollection<Commission> Commissions { get; set; }
 
         public ICollection<Preference> Preferences { get; set; }
+        public ICollection<Comments> Comments { get; set; }
+        public ICollection<Message> Messages { get; set; }
         #endregion
 
 
