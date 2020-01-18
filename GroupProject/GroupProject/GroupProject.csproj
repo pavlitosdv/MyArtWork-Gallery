@@ -562,7 +562,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\ArtWork\" />
     <Folder Include="Views\Search\" />
     <Folder Include="Views\Tag\" />
   </ItemGroup>
