@@ -11,21 +11,22 @@ namespace GroupProject.Controllers.API
 {
     public class UsersController : ApiController
     {
-        private readonly AdminApiRepository _adminApiRepository = new AdminApiRepository();
+        AdminApiRepository _adminApiRepository = new AdminApiRepository();
 
-        //GET /api/users
+
         [HttpGet]
-        public IHttpActionResult ShowUsers()
+        public IHttpActionResult Get()
         {
+           
             return Ok(_adminApiRepository.GetUsers());
         }
 
-        //public IHttpActionResult GetUserById(int id)
-        //{
-        //    _adminApiRepository.FindUserById(id);
+        public IHttpActionResult GetUserById(int id)
+        {
+           
 
-        //    return Ok();
-        //}
+            return Ok(_adminApiRepository.FindUserById(id));
+        }
 
         [HttpPut]
         public IHttpActionResult ChangeRole([FromBody]UserRoleViewModel userRole)

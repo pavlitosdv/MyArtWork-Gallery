@@ -7,13 +7,14 @@ using System.Web;
 
 namespace GroupProject.Models
 {
-    public class Preference
+    public class Comments
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public bool IsLiked { get; set; }
+        [MaxLength(255)]
+        public string CommentBody { get; set; }
 
         #region NavigationProperties
 
