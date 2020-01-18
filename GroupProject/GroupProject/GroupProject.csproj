@@ -281,6 +281,10 @@
     <Compile Include="Migrations\202001181054537_changes to models and added controllers .Designer.cs">
       <DependentUpon>202001181054537_changes to models and added controllers .cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202001181917139_mesasage and comments table created.cs" />
+    <Compile Include="Migrations\202001181917139_mesasage and comments table created.Designer.cs">
+      <DependentUpon>202001181917139_mesasage and comments table created.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -295,6 +299,7 @@
     <Compile Include="Models\Enums\Surface.cs" />
     <Compile Include="Models\Enums\Type.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Preference.cs" />
     <Compile Include="Models\Tag.cs" />
     <Compile Include="Models\UserRoleViewModel.cs" />
@@ -426,6 +431,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="ProfilePictures\default_profile_image.png" />
     <Content Include="Scripts\admin-sidebar.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -594,6 +600,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202001181054537_changes to models and added controllers .resx">
       <DependentUpon>202001181054537_changes to models and added controllers .cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001181917139_mesasage and comments table created.resx">
+      <DependentUpon>202001181917139_mesasage and comments table created.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

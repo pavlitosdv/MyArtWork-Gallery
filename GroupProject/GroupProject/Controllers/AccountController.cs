@@ -11,6 +11,7 @@ using Microsoft.Owin.Security;
 using GroupProject.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Collections.Generic;
+using System.IO;
 
 namespace GroupProject.Controllers
 {
@@ -161,7 +162,16 @@ namespace GroupProject.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                string path = "";
+
+                if (model.ProfilePicture != null)
+                {
+                    path = Path.Combine(Server.MapPath("~/ProfilePictures"),
+                    model.ProfilePicture.FileName);
+                    model.ProfilePicture.SaveAs(path);
+                }
+
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, ProfilePicture = Path.GetFileName(path) };
                 var result = await UserManager.CreateAsync(user, model.Password);
 
                 if (result.Succeeded)

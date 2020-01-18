@@ -73,7 +73,20 @@ namespace GroupProject.Models
 
             #endregion
 
-        }
+            #region Message Table 
+            modelBuilder.Entity<Message>()
+                       .HasRequired(m => m.User1)
+                       .WithMany(s => s.Messages)
+                       .HasForeignKey(m => m.UserFrom)
+                       .WillCascadeOnDelete(true);
 
+            modelBuilder.Entity<Message>()
+                        .HasRequired(m => m.User2)
+                        .WithMany()
+                        .HasForeignKey(m => m.UserTo)
+                        .WillCascadeOnDelete(false);
+            #endregion
+
+        }
     }
 }
