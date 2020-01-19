@@ -22,10 +22,12 @@ namespace GroupProject.Models
         [DisplayFormat(DataFormatString = "{0:d/M/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DateOfCommission { get; set; }
 
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:d/M/yyyy}", ApplyFormatInEditMode = true)]
-        //[FutureDate]
-        public DateTime Deadline { get; set; }
+        public double GrandTotal { get; set; }
+
+        //[DataType(DataType.Date)]
+        //[DisplayFormat(DataFormatString = "{0:d/M/yyyy}", ApplyFormatInEditMode = true)]
+        ////[FutureDate]
+        //public DateTime Deadline { get; set; }
 
         #endregion
 

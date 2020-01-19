@@ -285,6 +285,10 @@
     <Compile Include="Migrations\202001181917139_mesasage and comments table created.Designer.cs">
       <DependentUpon>202001181917139_mesasage and comments table created.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202001191641423_changes to tables.cs" />
+    <Compile Include="Migrations\202001191641423_changes to tables.Designer.cs">
+      <DependentUpon>202001191641423_changes to tables.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -603,6 +607,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202001181917139_mesasage and comments table created.resx">
       <DependentUpon>202001181917139_mesasage and comments table created.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001191641423_changes to tables.resx">
+      <DependentUpon>202001191641423_changes to tables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
