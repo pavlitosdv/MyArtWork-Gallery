@@ -84,7 +84,7 @@ namespace GroupProject.Controllers
             var ids = Session["Donations"] as List<int>;
 
             string userId = User.Identity.GetUserId();
-            _commissionRepository.AddCommissionToUser(userId, ids);
+            //_commissionRepository.AddCommissionToUser(userId, ids);
 
             return RedirectToAction("Index", "Home");
         }
