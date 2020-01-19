@@ -16,7 +16,7 @@ namespace GroupProject.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         private ArtWorksRepository _artWork = new ArtWorksRepository();
-        private CommissionRepository _commissionRepository = new CommissionRepository();
+        //private CommissionRepository _commissionRepository = new CommissionRepository();
 
 
         // GET: Commissions

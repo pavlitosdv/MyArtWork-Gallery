@@ -21,7 +21,7 @@ html, body {
         display: initial !important;
     }*/
 
-.row::before, .row::after {
+.row::before, .row::after, .form-group::before, .form-group:after {
     display: initial !important;
 }
 

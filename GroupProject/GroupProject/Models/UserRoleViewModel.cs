@@ -8,6 +8,7 @@ namespace GroupProject.Models
 {
     public class UserRoleViewModel
     {
+        public string SelectedRole { get; set; }
         //public List<ApplicationUser> ApplicationUser { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
         //public List<RegisterViewModel> RegisterViewModel { get; set; }

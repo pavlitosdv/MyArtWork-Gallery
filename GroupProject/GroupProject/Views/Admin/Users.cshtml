@@ -1,22 +1,17 @@
-﻿
+﻿@model  IEnumerable<GroupProject.Models.ApplicationUser>
+@using Microsoft.AspNet.Identity.EntityFramework;
 @{
     ViewBag.Title = "Users";
     Layout = "~/Views/Shared/_AdminPanel.cshtml";
+    var roles = (List<IdentityRole>)ViewBag.Roles;
+    var userRoleIds = Model.Select(i => i.Roles);
+    List<string> userRoleNames = new List<string>();
+    foreach(var item in userRoleIds)
+    {
+        userRoleNames.Add(roles.SingleOrDefault(r => r.Id.Equals(item.ElementAt(0).RoleId)).Name);
+    }
 }
 <!-- Modal HTML embedded directly into document -->
-<div id="newUser" class="modal">
-    <h1>New User</h1>
-    <div>
-        <label for="name">Name</label>
-    </div>
-    <div>
-        <input id="userNameNew" name="name" type="text" />
-    </div>
-    <div>
-        <button type="button" class="btn btn-primary" id="create">Create</button>
-    </div>
-    <a id="modal-close" href="#" rel="modal:close">Close</a>
-</div>
 
 <div id="editUser" class="modal">
     <h1>Edit User</h1>
@@ -33,18 +28,28 @@
     <a id="modal-close" href="#" rel="modal:close">Close</a>
 </div>
 
-<!-- Link to open the modal -->
-<p><a href="#newUser" class="btn btn-primary" rel="modal:open">Add User</a></p>
-
 <table id="users" class="table table-bordered table-hover">
     <thead>
         <tr>
             <th>Username</th>
+            <th>Role</th>
             <th>Actions</th>
         </tr>
     </thead>
     <tbody>
-
+        @for (int i = 0; i < Model.Count(); i++)
+        {
+            <tr>
+                <td>@Model.ElementAt(i).UserName</td>
+                <td>@userRoleNames[i]</td>
+                <td>
+                    @*@Html.ActionLink("Change Role", "RegisterRoleToUser", "Admin", new { id = Model.ElementAt(i).Id }, null)*@
+                    
+                    @Html.ActionLink("Edit", "RegisterRoleToUser", "Admin", new { id = Model.ElementAt(i).Id, role = @userRoleNames[i] }, new {@style = "color: #ffe066" }) --
+                    @Html.ActionLink("Delete", "Delete", "Users", new { id = Model.ElementAt(i).Id }, new {@style = "color: #ff4d4d" })
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
 
@@ -52,88 +57,51 @@
     <script>
         $(document).ready(function () {
 
-            var table = $('#users').DataTable({
-                ajax: {
-                    url: "/api/users",
-                    dataSrc: ""
-                },
-                columns: [
-                    {
-                        data: "UserName"
-                    },
-                    {
-                        //data: "Id",
-                        render: function (data, type, user) {
-                            return "<td><a style=' color: #ffe066' class='editUserOpen' href='#editUser' rel='modal:open' data-id='" + user.Id + "' data-name='" + user.UserName + "'>Edit</a> -- <a style='color: #ff4d4d' class='deleteUser' href='#' data-id='" + user.Id + "'>Delete</a></td>";
-                        },
-                        searchable: false,
-                        orderable: false
-                    }
-                ]
-            });
+            var table = $('#users').DataTable();
 
-            $('#create').click(function () {
-                var user = new Object();
-                user.Name = $('#userNameNew').val();
-                $.ajax({
-                    url: '/api/users',
-                    type: 'post',
-                    //dataType: 'json',
-                    //contentType: 'application/json',
-                    data: user,
-                    success: function () {
-                        $('#newUser #modal-close').click();
-                        table.ajax.reload();
-                    },
-                    error: function (error) {
-                        console.log(error);
-                    }
-                });
-            });
+            //$(document).on('click', '.editUserOpen', function (e) {
+            //    var user = new Object();
+            //    user.Name = e.target.getAttribute('data-name');
+            //    user.Id = e.target.getAttribute('data-id');
+            //    $('#userNameEdit').val(user.Name);
+            //    $('#userIdEdit').val(user.Id);
+            //});
 
-            $(document).on('click', '.editUserOpen', function (e) {
-                var user = new Object();
-                user.Name = e.target.getAttribute('data-name');
-                user.Id = e.target.getAttribute('data-id');
-                $('#userNameEdit').val(user.Name);
-                $('#userIdEdit').val(user.Id);
-            });
-
-            $(document).on('click', '.deleteUser', function (e) {
-                var cnf = confirm("Are you sure you wish to delete this user?");
-                if (cnf) {
-                    var del = e.target.getAttribute('data-id');
-                    $.ajax({
-                        url: '/api/users/' + del,
-                        type: 'delete',
-                        success: function () {
-                            table.ajax.reload();
-                        },
-                        error: function (error) {
-                            console.log(error);
-                        }
-                    });
-                }
-            });
+            //$(document).on('click', '.deleteUser', function (e) {
+            //    var cnf = confirm("Are you sure you wish to delete this user?");
+            //    if (cnf) {
+            //        var del = e.target.getAttribute('data-id');
+            //        $.ajax({
+            //            url: '/api/users/' + del,
+            //            type: 'delete',
+            //            success: function () {
+            //                table.ajax.reload();
+            //            },
+            //            error: function (error) {
+            //                console.log(error);
+            //            }
+            //        });
+            //    }
+            //});
 
 
-            $('#edit').click(function () {
-                var user = new Object();
-                user.Name = $('#userNameEdit').val();
-                user.Id = $('#userIdEdit').val();
-                $.ajax({
-                    url: '/api/users',
-                    type: 'put',
-                    data: user,
-                    success: function () {
-                        $('#editUser #modal-close').click();
-                        table.ajax.reload();
-                    },
-                    error: function (error) {
-                        console.log(error);
-                    }
-                });
-            });
+            //$('#edit').click(function () {
+            //    var user = new Object();
+            //    user.Name = $('#userNameEdit').val();
+            //    user.Id = $('#userIdEdit').val();
+            //    $.ajax({
+            //        url: '/api/users',
+            //        type: 'put',
+            //        data: user,
+            //        success: function () {
+            //            $('#editUser #modal-close').click();
+            //            table.ajax.reload();
+            //        },
+            //        error: function (error) {
+            //            console.log(error);
+            //        }
+            //    });
+            //});
         });
 
     </script>

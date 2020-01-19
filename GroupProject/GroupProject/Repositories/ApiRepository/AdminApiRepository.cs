@@ -32,7 +32,8 @@ namespace GroupProject.Repositories.ApiRepository
 
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                users = db.Users.Include("Roles").Include("Claims").Include("Logins").ToList();
+                //users = db.Users.Include("Roles").Include("Claims").Include("Logins").ToList();
+                users = db.Users.Include(u => u.Roles).Include(u => u.Claims).Include(u => u.Logins).ToList();
                 //users = db.Users.ToList();
             }
 

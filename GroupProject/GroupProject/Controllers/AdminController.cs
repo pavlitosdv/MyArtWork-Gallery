@@ -12,6 +12,7 @@ using System.Web.Mvc;
 using Newtonsoft.Json;
 using GroupProject.Repositories;
 using GroupProject.Repositories.ApiRepository;
+using System.Web.Security;
 
 namespace GroupProject.Controllers
 {
@@ -103,10 +104,11 @@ namespace GroupProject.Controllers
         
         
         [HttpGet]
-        public ActionResult RegisterRoleToUser(string id)
+        public ActionResult RegisterRoleToUser(string id, string role)
         {
             UserRoleViewModel u = new UserRoleViewModel();
             u.ApplicationUser= db.Users.SingleOrDefault(i => i.Id == id);
+            u.SelectedRole = role;
             
             List<IdentityRole> roles = null;
             using (ApplicationDbContext db = new ApplicationDbContext())
@@ -134,7 +136,7 @@ namespace GroupProject.Controllers
 
             await this.UserManager.AddToRoleAsync(userId.Id, userRole.RegisterViewModel.Role);
             //await UserManager.UpdateAsync(user);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Users", "Admin");
         }
 
         [HttpGet]
