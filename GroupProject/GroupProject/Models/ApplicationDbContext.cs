@@ -89,6 +89,6 @@ namespace GroupProject.Models
 
         }
 
-        public System.Data.Entity.DbSet<GroupProject.Models.ApplicationUser> ApplicationUsers { get; set; }
+        //public System.Data.Entity.DbSet<GroupProject.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 }
