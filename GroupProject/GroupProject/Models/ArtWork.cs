@@ -39,6 +39,10 @@ namespace GroupProject.Models
         [Required]
         public Surface surface { get; set; }
 
+        // added Price 1-01-2020
+        [Required]
+        public double Price { get; set; }
+
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:d/M/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DatePublished { get; set; }
