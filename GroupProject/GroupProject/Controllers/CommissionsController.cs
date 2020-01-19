@@ -30,6 +30,13 @@ namespace GroupProject.Controllers
         public ActionResult Donation(int id)
         {
             var donations = Session["Donations"] as List<int>; 
+            var total = (double)Session["Total"];
+
+            if (total == 0)
+            {
+                total = 0;
+                Session["Total"] = total;
+            }
 
             if (donations == null)
             {
@@ -77,7 +84,7 @@ namespace GroupProject.Controllers
             var ids = Session["Donations"] as List<int>;
 
             string userId = User.Identity.GetUserId();
-            //_commissionRepository.AddCommissionToUser(userId, ids);
+            _commissionRepository.AddCommissionToUser(userId, ids);
 
             return RedirectToAction("Index", "Home");
         }

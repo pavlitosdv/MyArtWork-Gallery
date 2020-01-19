@@ -12,7 +12,7 @@ namespace GroupProject.Controllers
 {
     public class ArtWorkController : Controller
     {
-        public static string guid = Guid.NewGuid().ToString();
+        //private static string guid = Guid.NewGuid().ToString();
 
         ArtWorksRepository _artWorksRepository = new ArtWorksRepository();
 
@@ -39,7 +39,7 @@ namespace GroupProject.Controllers
             else
             {
                 string extension = Path.GetExtension(artwork.ImageFile.FileName);
-                artwork.Thumbnail = guid.ToString() + extension;
+                artwork.Thumbnail = Guid.NewGuid().ToString() + extension;
                 string fileName = Path.Combine(Server.MapPath("~/ArtWorksImages/"), artwork.Thumbnail);
                 artwork.ImageFile.SaveAs(fileName); 
             }
