@@ -289,6 +289,10 @@
     <Compile Include="Migrations\202001191641423_changes to tables.Designer.cs">
       <DependentUpon>202001191641423_changes to tables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202001201132427_Removed required artist from artwork.cs" />
+    <Compile Include="Migrations\202001201132427_Removed required artist from artwork.Designer.cs">
+      <DependentUpon>202001201132427_Removed required artist from artwork.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -612,6 +616,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202001191641423_changes to tables.resx">
       <DependentUpon>202001191641423_changes to tables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001201132427_Removed required artist from artwork.resx">
+      <DependentUpon>202001201132427_Removed required artist from artwork.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

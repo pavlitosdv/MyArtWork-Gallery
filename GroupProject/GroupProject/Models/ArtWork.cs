@@ -58,7 +58,7 @@ namespace GroupProject.Models
         #region Navigation Properties
 
         #region An ArtWork must have an Artist
-
+        
         public ApplicationUser Artist { get; set; }
         #endregion
 
