@@ -27,7 +27,20 @@ html, body {
 
 .table.table-bordered {
     border-radius: 10px;
+    color: #fff;
 }
+
+    .table.table-bordered tr:nth-child(2n) {
+        background-color: #394046;
+    }
+
+    .table.table-bordered tr:nth-child(2n):hover {
+        background-color: #49515a;
+    }
+    
+    .table.table-bordered td{
+        border-radius: 10px;
+    }
 
 #responsive-admin-menu {
     float: left;
@@ -43,9 +56,10 @@ html, body {
 #content-wrapper {
     width: 100%;
     margin-left: 200px;
-    background-color: #ffffff;
+    background-color: #d5d9dd;
     height: 1200px;
     padding: 15px;
+    color: #171a1c;
 }
 
 #responsive-admin-menu #responsive-menu {

@@ -576,6 +576,8 @@
     <Content Include="Views\Commissions\Index.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\ArtWork\Create.cshtml" />
+    <Content Include="Views\Admin\Preferences.cshtml" />
+    <Content Include="Views\Admin\Comments.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

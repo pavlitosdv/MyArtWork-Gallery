@@ -29,3 +29,7 @@ textarea {
     margin-right: auto;
     width: 50%;
 }
+
+.navbar.navbar-inverse.navbar-fixed-top a {
+    color: #e6e6e6;
+}

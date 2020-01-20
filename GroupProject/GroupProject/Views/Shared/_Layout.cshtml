@@ -27,7 +27,7 @@
 
                 @Html.Partial("_LoginPartial")
 
-            <div class="nav navbar-nav navbar-right">
+            <div style="margin: 7px; color: #0d0d0d;" class="nav navbar-nav navbar-right">
                 @using (Html.BeginForm("Search", "Home", FormMethod.Get, new { @class = "form-inline my-2 my-lg-0 px-2", role = "form" }))
                 {
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="searchTerm">
