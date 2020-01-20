@@ -14,7 +14,7 @@ namespace GroupProject.Controllers
         private readonly ArtistSearchRepository _artistSearchRepository = new ArtistSearchRepository();
 
 
-        [HttpGet]
+        [HttpPost]
         public ActionResult SearchBar(string searchTerm, string category)
         {
             if (category == "artist")
@@ -28,7 +28,7 @@ namespace GroupProject.Controllers
                 artWorks = _artWorksRepository.SearchArtWorks(searchTerm);
 
             }
-            return View(artWorks);
+            return View("~/Views/Home/Index", artWorks);
         }
     }
 }
