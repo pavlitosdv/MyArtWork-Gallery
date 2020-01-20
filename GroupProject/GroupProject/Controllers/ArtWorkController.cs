@@ -24,8 +24,23 @@ namespace GroupProject.Controllers
             return View(artWorks);
         }
 
+        public ActionResult ArtWorksByArtist()
+        {
+            string artistId = User.Identity.GetUserId();
+
+            var artWorks = _artWorksRepository.GetArtWorksByArtist(artistId);
+
+            return View(artWorks);
+        }
+
         public ActionResult Create()
-        {            
+        {
+            List<Tag> tags = null;
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                tags = db.Tags.ToList();
+            }
+            ViewBag.Tags = tags;
             return View();
         }
 
@@ -36,7 +51,7 @@ namespace GroupProject.Controllers
             string artistId = User.Identity.GetUserId();
             ApplicationUser artist = db.Users.SingleOrDefault(i => i.Id == artistId);
 
-            DateTime published = DateTime.Now.Date;
+            DateTime published = DateTime.Now.Date; //
 
             if (artwork.ImageFile == null)
             {
@@ -55,9 +70,9 @@ namespace GroupProject.Controllers
                 return View(artwork);
             }
             _artWorksRepository.AddArtWork(artwork.Name, artwork.Length, artwork.Width, artwork.style, artwork.type,
-                artwork.media, artwork.surface, artwork.Price, published, artwork.Thumbnail, artist);
-
-            return RedirectToAction("Index");
+                artwork.media, artwork.surface, artwork.Price, published, artwork.Thumbnail, artist, artwork.TagIds);
+            
+            return RedirectToAction("Index","Profile");
         }
 
         public ActionResult Details(int id)
