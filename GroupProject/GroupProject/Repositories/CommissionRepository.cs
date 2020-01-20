@@ -14,18 +14,18 @@ namespace GroupProject.Repositories
         {
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                decimal total = 0;
+                //double total = 0;
                 foreach (var item in commissionIds)
                 {
 
                     var artworks = db.ArtWorks.Find(item);
-                    var artist = db.Users.Where(i => i.Id == artworks.Artist.Id);
+                    var artist = db.Users.SingleOrDefault(i => i.Id == artworks.Artist.Id);
                     db.Commissions.Add(new Commission
                     {
                         UserId = userId,
                         Price=artworks.Price,
-                        //ArtistId=artworks.a,
-                        DateOfCommission= DateTime.Now.Date
+                        ArtistId = artist.Id,
+                        DateOfCommission = DateTime.Now.Date
                     });
                     //total += artworks.Price;
                 }

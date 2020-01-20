@@ -45,7 +45,8 @@ namespace GroupProject.Repositories
             {
                 db.ArtWorks.Add(new ArtWork
                 {
-                    Name = name
+                    Name = name,
+                    //Artist = db.Users.SingleOrDefault(i => i.Id ==/*logarismeno xristi*/)
                 });
 
                 db.SaveChanges();

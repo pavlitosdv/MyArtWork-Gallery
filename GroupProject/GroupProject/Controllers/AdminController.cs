@@ -19,6 +19,8 @@ namespace GroupProject.Controllers
     public class AdminController : Controller
     {
         public AdminApiRepository _adminApiRepository = new AdminApiRepository();
+        public AdminRepository _adminRepository = new AdminRepository();
+        
         private ApplicationUserManager _userManager;
         public ApplicationDbContext db;
 
@@ -130,7 +132,7 @@ namespace GroupProject.Controllers
                 userId = db.Users.SingleOrDefault(i => i.Id == userRole.ApplicationUser.Id);
             }
 
-            await this.UserManager.RemoveFromRoleAsync(userId.Id, removeRole.ToString());
+            await this.UserManager.RemoveFromRoleAsync(userId.Id, removeRole[0].ToString());
 
             await this.UserManager.AddToRoleAsync(userId.Id, userRole.RegisterViewModel.Role);
             //await UserManager.UpdateAsync(user);
@@ -166,6 +168,21 @@ namespace GroupProject.Controllers
             await this.UserManager.RemoveFromRoleAsync(userId.Id, userRole.RegisterViewModel.Role);
             //await UserManager.UpdateAsync(user);
             return RedirectToAction("Index", "Home");
+        }
+
+        
+        public ActionResult Delete(int id)
+        {
+            var user = _adminRepository.FindById(id);
+            return View(user);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirm(int id)
+        {
+            _adminRepository.DeleteUser(id);
+            return RedirectToAction("Index");
         }
 
     }

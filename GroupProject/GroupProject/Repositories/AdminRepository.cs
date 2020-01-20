@@ -22,16 +22,28 @@ namespace GroupProject.Repositories
         //    return users;
         //}
 
-        //public ApplicationUser FindById(int id)
-        //{
-        //    ApplicationUser user;
+        public ApplicationUser FindById(int id)
+        {
+            ApplicationUser user;
 
-        //    using (var db = new ApplicationDbContext())
-        //    {
-        //        user = db.Users.SingleOrDefault(i => i.Id == id.ToString());
-        //    }
-         
-        //    return user;
-        //}
+            using (var db = new ApplicationDbContext())
+            {
+                user = db.Users.SingleOrDefault(i => i.Id == id.ToString());
+            }
+
+            return user;
+        }
+
+        public void DeleteUser(int id)
+        {
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                var user = db.Users.Find(id);
+                db.Users.Remove(user);
+                db.SaveChanges();
+            }
+        }
+
+
     }
 }
