@@ -17,7 +17,6 @@ namespace GroupProject.Controllers
         public ActionResult Index()
         {
             var users = _modifyUserRoleRepository.GetUsers();
-
             List<IdentityRole> roles = null;
             using (ApplicationDbContext db = new ApplicationDbContext())
             {

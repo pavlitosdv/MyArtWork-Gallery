@@ -19,7 +19,6 @@ namespace GroupProject.Repositories
                 users = db.Users.Include("Roles").ToList();
                 //users = db.Users.ToList();
             }
-
             return users;
         }
 
