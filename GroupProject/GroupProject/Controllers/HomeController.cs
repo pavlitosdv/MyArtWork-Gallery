@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GroupProject.Models;
+using GroupProject.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,17 +10,30 @@ namespace GroupProject.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ArtWorksRepository _artWorksRepository = new ArtWorksRepository();
+        private readonly ArtistSearchRepository _artistSearchRepository = new ArtistSearchRepository();
         public ActionResult Index()
         {
             return View();
         }
 
-        //public ActionResult Index(string searchString)
-        //{
-        //    return View(searchString);
-        //}
+        public ActionResult Search(string searchTerm, string category)
+        {
+            if (category == "artist")
+            {
+                return View(_artistSearchRepository.SearchArtist(searchTerm, category));
+            }
 
-        public ActionResult SingleImage(int id)
+            IEnumerable<ArtWork> artWorks = null;
+            if (!string.IsNullOrWhiteSpace(searchTerm))
+            {
+                artWorks = _artWorksRepository.SearchArtWorks(searchTerm);
+
+            }
+            return View(artWorks);
+        }
+
+    public ActionResult SingleImage(int id)
         {
             return View(id);
         }

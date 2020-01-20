@@ -35,14 +35,14 @@ namespace GroupProject.Repositories
             {
                 using (var db = new ApplicationDbContext())
                 {
-                    artists = db.Users.Where(i => i.Roles.Any(r => r.RoleId == db.Roles.SingleOrDefault(z => z.Name == "Artist").Id) && i.UserName == searchTerm).ToList();
+                    artists = db.Users.Where(i => i.Roles.Any(r => r.RoleId == db.Roles.FirstOrDefault(z => z.Name == "Artist").Id) && i.UserName == searchTerm).ToList();
                 }                
             }
             else
             {
                 using (var db = new ApplicationDbContext())
                 {
-                    artists = db.Users.Where(i => i.Roles.Any(r => r.RoleId == db.Roles.SingleOrDefault(z => z.Name == "Artist").Id)).ToList();
+                    artists = db.Users.Where(i => i.Roles.Any(r => r.RoleId == db.Roles.FirstOrDefault(z => z.Name == "Artist").Id)).ToList();
                 }
             }           
             return artists;

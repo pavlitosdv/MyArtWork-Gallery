@@ -24,9 +24,20 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Roles", "RegisterRole", "Account")</li>
+                    <li>@Html.ActionLink("Admin Panel", "Index", "Admin")</li>
                 </ul>
+
                 @Html.Partial("_LoginPartial")
+
+            <div class="nav navbar-nav navbar-right">
+                @using (Html.BeginForm("Search", "Home", FormMethod.Get, new { @class = "form-inline my-2 my-lg-0 px-2", role = "form" }))
+                {
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="searchTerm">
+                    <input type="radio" name="category" value="artwork" checked="checked"><span>Artworks</span>
+                    <input type="radio" name="category" value="artist"><span>Artists</span>
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                }
+            </div>
             </div>
         </div>
     </div>
