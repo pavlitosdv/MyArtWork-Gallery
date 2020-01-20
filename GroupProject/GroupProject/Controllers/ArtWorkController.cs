@@ -1,5 +1,6 @@
 ﻿using GroupProject.Models;
 using GroupProject.Repositories;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,7 +13,7 @@ namespace GroupProject.Controllers
 {
     public class ArtWorkController : Controller
     {
-        //private static string guid = Guid.NewGuid().ToString();
+        ApplicationDbContext db = new ApplicationDbContext();
 
         ArtWorksRepository _artWorksRepository = new ArtWorksRepository();
 
@@ -31,6 +32,8 @@ namespace GroupProject.Controllers
         [HttpPost]
         public ActionResult Create(ArtWork artwork)
         {
+            string artistId = User.Identity.GetUserId();
+            ApplicationUser artist = db.Users.SingleOrDefault(i => i.Id == artistId);
 
             if (artwork.ImageFile == null)
             {
@@ -48,7 +51,8 @@ namespace GroupProject.Controllers
             {
                 return View(artwork);
             }
-            _artWorksRepository.AddArtWork(artwork.Name);
+            _artWorksRepository.AddArtWork(artwork.Name, artwork.Length, artwork.Width, artwork.style, artwork.type,
+                artwork.media, artwork.surface, artwork.Price, artwork.DatePublished, artwork.Thumbnail, artist);
 
             return RedirectToAction("Index");
         }

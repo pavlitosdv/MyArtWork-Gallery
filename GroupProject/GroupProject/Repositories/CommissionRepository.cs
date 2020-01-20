@@ -10,7 +10,7 @@ namespace GroupProject.Repositories
 {
     public class CommissionRepository
     {
-        public void AddCommissionToUser(string userId, IEnumerable<int> commissionIds)
+        public void AddCommissionToUser(string userId, IEnumerable<int> commissionIds, double total)
         {
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
@@ -25,8 +25,10 @@ namespace GroupProject.Repositories
                         UserId = userId,
                         Price=artworks.Price,
                         ArtistId = artist.Id,
-                        DateOfCommission = DateTime.Now.Date
-                    });
+                        DateOfCommission = DateTime.Now.Date,
+                        GrandTotal = total
+
+                });
                     //total += artworks.Price;
                 }
                 db.SaveChanges();

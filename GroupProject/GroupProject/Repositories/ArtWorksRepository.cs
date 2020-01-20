@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Microsoft.AspNet.Identity;
+using GroupProject.Models.Enums;
 
 namespace GroupProject.Repositories
 {
@@ -37,7 +39,8 @@ namespace GroupProject.Repositories
         }
 
         #region AddArtWork
-        public void AddArtWork(string name)
+        public void AddArtWork(string name, long length, long width, Style style, Models.Enums.Type type, Media media, 
+                               Surface surface, double price, DateTime datePublished, string thumbnail, ApplicationUser artist)
         {
             Throw.IfNullOrWhiteSpace(name, "Name cannot be null or whitespace");
 
@@ -46,7 +49,17 @@ namespace GroupProject.Repositories
                 db.ArtWorks.Add(new ArtWork
                 {
                     Name = name,
-                    //Artist = db.Users.SingleOrDefault(i => i.Id ==/*logarismeno xristi*/)
+                    Length=length,
+                    Width=width,
+                    style=style,
+                    type=type,
+                    media=media,
+                    surface=surface,
+                    Price=price,
+                    DatePublished=datePublished,
+                    Thumbnail= thumbnail,
+                    Artist = artist
+                    //Artist = db.Users.SingleOrDefault(i => i.Id == User.Identity.GetUserId())
                 });
 
                 db.SaveChanges();

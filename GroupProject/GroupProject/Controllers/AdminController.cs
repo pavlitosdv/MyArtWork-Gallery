@@ -109,7 +109,6 @@ namespace GroupProject.Controllers
             UserRoleViewModel u = new UserRoleViewModel();
             u.ApplicationUser= db.Users.SingleOrDefault(i => i.Id == id);
             u.SelectedRole = role;
-            
             List<IdentityRole> roles = null;
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
