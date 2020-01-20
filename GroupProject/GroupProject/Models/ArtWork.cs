@@ -15,6 +15,7 @@ namespace GroupProject.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
+
         #region Fields Data
 
         [Required]
@@ -65,7 +66,14 @@ namespace GroupProject.Models
         public ApplicationUser Artist { get; set; }
         #endregion
 
+
         #region An ArtWork may have many Tags that charactetize it
+
+        //public int Tag_Id { get; set; }
+        [NotMapped]
+        public List<int> TagIds { get; set; }
+
+        //[ForeignKey("Tag_Id")]
         public ICollection<Tag> Tags { get; set; }
         #endregion  
 

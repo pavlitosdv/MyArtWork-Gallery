@@ -26,6 +26,18 @@ namespace GroupProject.Repositories
         }
         #endregion
 
+        public IEnumerable<ArtWork> GetArtWorksByArtist(string artistId)
+        {
+            IEnumerable<ArtWork> artWorks;
+
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                artWorks = db.ArtWorks.Where(i=>i.Artist_Id == artistId).ToList();
+            }
+
+            return artWorks;
+        }
+
         public IEnumerable<ArtWork> GetArtWorks(IEnumerable<int> ids)
         {
             List<ArtWork> artWorks = new List<ArtWork>();
@@ -40,9 +52,12 @@ namespace GroupProject.Repositories
 
         #region AddArtWork
         public void AddArtWork(string name, long length, long width, Style style, Models.Enums.Type type, Media media, 
-                               Surface surface, double price, DateTime datePublished, string thumbnail, ApplicationUser artist)
+                               Surface surface, double price, DateTime datePublished, string thumbnail, 
+                               ApplicationUser artist, List<int> tagIds)
         {
             Throw.IfNullOrWhiteSpace(name, "Name cannot be null or whitespace");
+
+
 
             var artwork = new ArtWork
             {
@@ -56,11 +71,19 @@ namespace GroupProject.Repositories
                 Price = price,
                 DatePublished = datePublished,
                 Thumbnail = thumbnail,
-                Artist_Id = artist.Id
-                //Artist = db.Users.SingleOrDefault(i => i.Id == User.Identity.GetUserId())
+                Artist_Id = artist.Id,
+                Tags = new List<Tag>()       
             };
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
+                foreach (var item in tagIds)
+                {
+                    //var t = new Tag { Id = item };
+                    //db.Tags.Attach(t);
+                    var tag = db.Tags.Find(item);
+                    artwork.Tags.Add(tag);
+                }
+
                 db.ArtWorks.Add(artwork);
 
                 db.SaveChanges();
@@ -115,7 +138,10 @@ namespace GroupProject.Repositories
             using (var db = new ApplicationDbContext())
             {
                 artWorks = db.ArtWorks.Include("Tags")
-                            .Where(i => i.Name.Contains(searchTerm)).ToList();                                     
+                            .Where(i => i.Name.Contains(searchTerm)).ToList();  
+                
+
+                            //.Where(i => i.Name.Contains(searchTerm) || i.Tags.Contains(searchTerm)).ToList();
             }
             return artWorks;
         }
