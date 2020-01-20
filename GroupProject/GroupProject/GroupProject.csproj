@@ -570,6 +570,7 @@
     <Content Include="Views\Commissions\Details.cshtml" />
     <Content Include="Views\Commissions\Edit.cshtml" />
     <Content Include="Views\Commissions\Index.cshtml" />
+    <Content Include="Views\ArtWork\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
