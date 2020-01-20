@@ -29,11 +29,14 @@ namespace GroupProject.Controllers
             return View();
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult Create(ArtWork artwork)
         {
             string artistId = User.Identity.GetUserId();
             ApplicationUser artist = db.Users.SingleOrDefault(i => i.Id == artistId);
+
+            DateTime published = DateTime.Now.Date;
 
             if (artwork.ImageFile == null)
             {
@@ -52,7 +55,7 @@ namespace GroupProject.Controllers
                 return View(artwork);
             }
             _artWorksRepository.AddArtWork(artwork.Name, artwork.Length, artwork.Width, artwork.style, artwork.type,
-                artwork.media, artwork.surface, artwork.Price, artwork.DatePublished, artwork.Thumbnail, artist);
+                artwork.media, artwork.surface, artwork.Price, published, artwork.Thumbnail, artist);
 
             return RedirectToAction("Index");
         }
