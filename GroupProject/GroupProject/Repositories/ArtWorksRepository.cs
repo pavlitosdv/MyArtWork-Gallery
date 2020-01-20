@@ -44,23 +44,24 @@ namespace GroupProject.Repositories
         {
             Throw.IfNullOrWhiteSpace(name, "Name cannot be null or whitespace");
 
+            var artwork = new ArtWork
+            {
+                Name = name,
+                Length = length,
+                Width = width,
+                style = style,
+                type = type,
+                media = media,
+                surface = surface,
+                Price = price,
+                DatePublished = datePublished,
+                Thumbnail = thumbnail,
+                Artist_Id = artist.Id
+                //Artist = db.Users.SingleOrDefault(i => i.Id == User.Identity.GetUserId())
+            };
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                db.ArtWorks.Add(new ArtWork
-                {
-                    Name = name,
-                    Length=length,
-                    Width=width,
-                    style=style,
-                    type=type,
-                    media=media,
-                    surface=surface,
-                    Price=price,
-                    DatePublished=datePublished,
-                    Thumbnail= thumbnail,
-                    Artist = artist
-                    //Artist = db.Users.SingleOrDefault(i => i.Id == User.Identity.GetUserId())
-                });
+                db.ArtWorks.Add(artwork);
 
                 db.SaveChanges();
             }

@@ -59,6 +59,9 @@ namespace GroupProject.Models
 
         #region An ArtWork must have an Artist
         
+        public string Artist_Id { get; set; }
+
+        [ForeignKey("Artist_Id")]
         public ApplicationUser Artist { get; set; }
         #endregion
 
