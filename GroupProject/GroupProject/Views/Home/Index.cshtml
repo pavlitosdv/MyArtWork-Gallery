@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<GroupProject.Models.ArtWork>
+@{
     ViewBag.Title = "Home Page";
 }
 <style>
@@ -133,57 +134,68 @@
         }
 </style>
 
-<h1>Masonry - imagesLoaded progress</h1>
+<h1 style="text-align: center;">MyGallery</h1>
 
 <div class="grid">
     <div class="grid-sizer"></div>
-    <div class="grid-item">
-        <div class="hovereffect"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/orange-tree.jpg" />
-        <div class="overlay"><h2>Hover effect!</h2></div>
+    @foreach (var item in Model)
+    {
+        <div class="grid-item">
+            <div class="hovereffect">
+                <img src="~/ArtWorksImages/@item.Thumbnail" />
+                <div class="overlay"><h2>@Html.ActionLink(item.Name, "Details", "ArtWork", new { id = item.Id }, null)</h2></div>
+            </div>
         </div>
-        
-    </div>
-    <div class="grid-item">
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/submerged.jpg" />
-    </div>
-    <div class="grid-item">
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/look-out.jpg" />
-    </div>
-    <div class="grid-item">
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/one-world-trade.jpg" />
-    </div>
-    <div class="grid-item">
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/drizzle.jpg" />
-    </div>
-    <div class="grid-item">
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/cat-nose.jpg" />
-    </div>
-    <div class="grid-item">
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/contrail.jpg" />
-    </div>
-    <div class="grid-item">
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/golden-hour.jpg" />
-    </div>
-    <div class="grid-item">
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/flight-formation.jpg" />
-    </div>
-</div>
+    }
+        </div>
+        @*<div class="grid-sizer"></div>
+            <div class="grid-item">
+                <div class="hovereffect"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/orange-tree.jpg" />
+                <div class="overlay"><h2>Hover effect!</h2></div>
+                </div>
+
+            </div>
+            <div class="grid-item">
+                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/submerged.jpg" />
+            </div>
+            <div class="grid-item">
+                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/look-out.jpg" />
+            </div>
+            <div class="grid-item">
+                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/one-world-trade.jpg" />
+            </div>
+            <div class="grid-item">
+                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/drizzle.jpg" />
+            </div>
+            <div class="grid-item">
+                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/cat-nose.jpg" />
+            </div>
+            <div class="grid-item">
+                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/contrail.jpg" />
+            </div>
+            <div class="grid-item">
+                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/golden-hour.jpg" />
+            </div>
+            <div class="grid-item">
+                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/flight-formation.jpg" />
+            </div>*@
 
 
-@section Scripts {
-    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
-    <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            var $grid = $('.grid').masonry({
-                itemSelector: '.grid-item',
-                percentPosition: true,
-                columnWidth: '.grid-sizer'
-            });
-            // layout Masonry after each image loads
-            $grid.imagesLoaded().progress(function () {
-                $grid.masonry();
-            });
-        })
-    </script>
-}
+
+        @section Scripts {
+            <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+            <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+            <script>
+                $(document).ready(function () {
+                    var $grid = $('.grid').masonry({
+                        itemSelector: '.grid-item',
+                        percentPosition: true,
+                        columnWidth: '.grid-sizer'
+                    });
+                    // layout Masonry after each image loads
+                    $grid.imagesLoaded().progress(function () {
+                        $grid.masonry();
+                    });
+                })
+            </script>
+        }

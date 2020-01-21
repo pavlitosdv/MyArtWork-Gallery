@@ -134,14 +134,21 @@ namespace GroupProject.Repositories
         public IEnumerable<ArtWork> SearchArtWorks(string searchTerm)
         {
             IEnumerable<ArtWork> artWorks;
+            IEnumerable<Tag> tags;
 
             using (var db = new ApplicationDbContext())
             {
-                artWorks = db.ArtWorks.Include("Tags")
-                            .Where(i => i.Name.Contains(searchTerm)).ToList();  
-                
+                //tags = db.Tags.Where(t => t.Name.Contains(searchTerm)).ToList();
 
-                            //.Where(i => i.Name.Contains(searchTerm) || i.Tags.Contains(searchTerm)).ToList();
+                artWorks = db.ArtWorks.Include("Tags")
+                            .Where(i => i.Name.Contains(searchTerm)).ToList();
+
+
+                //.Where(i => i.Name.Contains(searchTerm) || tags.Any(t => t.Name)).ToList();
+
+                //artWorks = db.ArtWorks.Include("Tags")
+                //             .Where(x => x.Tags.Any(r => tags.Contains(r.Name)));
+
             }
             return artWorks;
         }

@@ -84,7 +84,7 @@
         <div class="col-md-10">
             @*@Html.DropDownList("Tags", (MultiSelectList)ViewBag.Tags, new { multiple = "multiple" })*@
 
-            @Html.DropDownListFor(m => m.TagIds, new MultiSelectList(ViewBag.Tags, "Id", "Name"), "--Select role--", new { @class = "form-control", multiple = "multiple" })
+            @Html.DropDownListFor(m => m.TagIds, new MultiSelectList(ViewBag.Tags, "Id", "Name"), "--Select tags--", new { @class = "form-control", multiple = "multiple" })
 
 
             @Html.ValidationMessageFor(model => model.Tags, "", new { @class = "text-danger" })

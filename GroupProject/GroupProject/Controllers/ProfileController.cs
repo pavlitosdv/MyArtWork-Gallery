@@ -1,4 +1,5 @@
 ﻿using GroupProject.Models;
+using GroupProject.Repositories;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,8 @@ namespace GroupProject.Controllers
     public class ProfileController : Controller
     {
         ApplicationDbContext db = new ApplicationDbContext();
+
+        ArtWorksRepository _artWorksRepository = new ArtWorksRepository();
 
 
         // GET: Profile
@@ -93,6 +96,15 @@ namespace GroupProject.Controllers
         //    return RedirectToAction("Index");
         //    //return View(applicationUser);
         //}
+
+        public ActionResult Artworks()
+        {
+            string artistId = User.Identity.GetUserId();
+
+            var artWorks = _artWorksRepository.GetArtWorksByArtist(artistId);
+
+            return View(artWorks);
+        }
 
     }
 }

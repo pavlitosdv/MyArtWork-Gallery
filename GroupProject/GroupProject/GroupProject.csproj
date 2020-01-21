@@ -436,6 +436,7 @@
     <Content Include="Content\DataTables\images\sort_desc.png" />
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
+    <Content Include="Content\profile.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -578,6 +579,10 @@
     <Content Include="Views\ArtWork\Create.cshtml" />
     <Content Include="Views\Admin\Preferences.cshtml" />
     <Content Include="Views\Admin\Comments.cshtml" />
+    <Content Include="Views\ArtWork\Index.cshtml" />
+    <Content Include="Views\ArtWork\Details.cshtml" />
+    <Content Include="Views\Shared\_Profile.cshtml" />
+    <Content Include="Views\Profile\Artworks.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

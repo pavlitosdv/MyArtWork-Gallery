@@ -29,22 +29,22 @@ namespace GroupProject.Controllers
 
         public ActionResult Donation(int id)
         {
-            var donations = Session["Donations"] as List<int>; 
-            var total = (double)Session["Total"];
+            var donations = Session["Donations"] as List<int>;
+            //var total = (double)Session["Total"];
 
             var artworks = db.ArtWorks.Find(id);
 
-            if (total == 0)
-            {
-                total = 0;
-                Session["Total"] = total;
-            }
-            else
-            {
-                Session["Total"] = total;
-            }
-            total += artworks.Price;
-            Session["Total"] = total;
+            //if (total == 0)
+            //{
+            //    total = 0;
+            //    Session["Total"] = total;
+            //}
+            //else
+            //{
+            //    Session["Total"] = total;
+            //}
+            //total += artworks.Price;
+            //Session["Total"] = total;
 
 
             if (donations == null)
@@ -64,7 +64,7 @@ namespace GroupProject.Controllers
         public ActionResult RemoveDonation(int id)
         {
             var donations = Session["Donations"] as List<int>;
-            var total = (double)Session["Total"];
+            //var total = (double)Session["Total"];
 
             var artworks = db.ArtWorks.Find(id);
 
@@ -73,10 +73,10 @@ namespace GroupProject.Controllers
                 donations.Remove(id);
             }
 
-            total += artworks.Price;
-            Session["Total"] = total;
+            //total += artworks.Price;
+            //Session["Total"] = total;
 
-            return RedirectToAction("Index", "Gigs");
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult Submit()
@@ -84,7 +84,7 @@ namespace GroupProject.Controllers
             var donations = Session["Donations"] as List<int>;
 
           //---\\
-            var total = (double)Session["Total"];
+            //var total = (double)Session["Total"];
 
             IEnumerable<ArtWork> model = null;
 
@@ -96,17 +96,17 @@ namespace GroupProject.Controllers
             return View(model);
         }
 
-        [HttpPost]
-        //[ActionName("Submit")]
-        public ActionResult SubmitDonation()
-        {
-            var ids = Session["Donations"] as List<int>;
-            var total = (double)Session["Total"];
+        //[HttpPost]
+        ////[ActionName("Submit")]
+        //public ActionResult SubmitDonation()
+        //{
+        //    var ids = Session["Donations"] as List<int>;
+        //    var total = (double)Session["Total"];
 
-            string userId = User.Identity.GetUserId();
-            //_commissionRepository.AddCommissionToUser(userId, ids, total);
+        //    string userId = User.Identity.GetUserId();
+        //    //_commissionRepository.AddCommissionToUser(userId, ids, total);
 
-            return RedirectToAction("Index", "Home");
-        }
+        //    return RedirectToAction("Index", "Home");
+        //}
     }
 }

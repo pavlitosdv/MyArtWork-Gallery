@@ -14,7 +14,8 @@ namespace GroupProject.Controllers
         private readonly ArtistSearchRepository _artistSearchRepository = new ArtistSearchRepository();
         public ActionResult Index()
         {
-            return View();
+            var artWorks = _artWorksRepository.GetArtWorks();
+            return View(artWorks);
         }
 
         public ActionResult Search(string searchTerm, string category)
