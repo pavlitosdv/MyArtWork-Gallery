@@ -33,3 +33,8 @@ textarea {
 .navbar.navbar-inverse.navbar-fixed-top a {
     color: #e6e6e6;
 }
+
+.grid-item img {
+    max-height: 500px;
+    width: 100%;
+}

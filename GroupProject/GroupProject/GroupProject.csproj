@@ -590,6 +590,7 @@
     <Content Include="Views\Profile\Artworks.cshtml" />
     <Content Include="Views\Commissions\SuccessView.cshtml" />
     <Content Include="Views\Commissions\FailureView.cshtml" />
+    <Content Include="Views\Home\SearchArtists.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

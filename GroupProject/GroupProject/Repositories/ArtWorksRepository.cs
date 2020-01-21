@@ -134,7 +134,7 @@ namespace GroupProject.Repositories
         public IEnumerable<ArtWork> SearchArtWorks(string searchTerm)
         {
             IEnumerable<ArtWork> artWorks;
-            IEnumerable<Tag> tags;
+            //IEnumerable<Tag> tags;
 
             using (var db = new ApplicationDbContext())
             {

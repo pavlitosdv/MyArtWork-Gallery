@@ -22,7 +22,7 @@ namespace GroupProject.Controllers
         {
             if (category == "artist")
             {
-                return View(_artistSearchRepository.SearchArtist(searchTerm, category));
+                return View("~/Views/Home/SearchArtists.cshtml", _artistSearchRepository.SearchArtist(searchTerm, category));
             }
 
             IEnumerable<ArtWork> artWorks = null;
