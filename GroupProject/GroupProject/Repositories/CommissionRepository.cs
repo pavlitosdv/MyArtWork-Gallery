@@ -19,7 +19,7 @@ namespace GroupProject.Repositories
                 {
 
                     var artworks = db.ArtWorks.Find(item);
-                    var artist = db.Users.SingleOrDefault(i => i.Id == artworks.Artist.Id);
+                    var artist = db.Users.SingleOrDefault(i => i.Id == artworks.Artist_Id);
                     db.Commissions.Add(new Commission
                     {
                         UserId = userId,

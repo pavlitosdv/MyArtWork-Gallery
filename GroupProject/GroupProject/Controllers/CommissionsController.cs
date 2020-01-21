@@ -145,6 +145,7 @@ namespace GroupProject.Controllers
                     sku = "sku"
                 });
             }
+
           
 
             var payer = new Payer() { payment_method = "paypal" };
@@ -163,6 +164,7 @@ namespace GroupProject.Controllers
                 shipping = "1",
                 subtotal = artworks.Sum(x => x.Price).ToString()
             };
+            Session["Total"] = artworks.Sum(x => x.Price);
 
             // similar as we did for credit card, do here and create amount object
             var amount = new Amount()
@@ -222,7 +224,7 @@ namespace GroupProject.Controllers
                     // baseURL is the url on which paypal sendsback the data.
                     // So we have provided URL of this controller only
                     string baseURI = Request.Url.Scheme + "://" + Request.Url.Authority +
-                                "/Paypal/PaymentWithPayPal?";
+                                "/Commissions/PaymentWithPayPal?";
 
                     //guid we are generating for storing the paymentID received in session
                     //after calling the create function and it is used in the payment execution
@@ -282,10 +284,12 @@ namespace GroupProject.Controllers
             }
 
             var ids = Session["Donations"] as List<int>;
-            var total = (double)Session["Total"];
+            //var total = (double)Session["Total"];
+
+            var total = Session["Total"];
 
             string userId = User.Identity.GetUserId();
-            _commissionRepository.AddCommissionToUser(userId, ids, total);
+            _commissionRepository.AddCommissionToUser(userId, ids, Convert.ToDouble(total));
             Session.Clear();
             return View("SuccessView");
         }
