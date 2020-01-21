@@ -20,7 +20,7 @@
 			transition: background 0.5s ease;
 		}
 
-		.img-data-container{
+		.img-data-container {
 			width: 60%;
 			margin: auto;
 		}
@@ -36,35 +36,36 @@
 			display: inline-block;
 			margin: 5px 0 15px 0;
 		}
+
 		.img-data-container .btn {
 			margin: 10px 0;
 			float: right;
 		}
 
-			#heart:before,
-			#heart:after {
-				transition: background 0.5s ease;
-				position: absolute;
-				content: "";
-				left: 50px;
-				top: 0;
-				width: 50px;
-				height: 80px;
-				background: dimgrey;
-				border-radius: 50px 50px 0 0;
-				transform: rotate(-45deg);
-				transform-origin: 0 100%;
-			}
+		#heart:before,
+		#heart:after {
+			transition: background 0.5s ease;
+			position: absolute;
+			content: "";
+			left: 50px;
+			top: 0;
+			width: 50px;
+			height: 80px;
+			background: dimgrey;
+			border-radius: 50px 50px 0 0;
+			transform: rotate(-45deg);
+			transform-origin: 0 100%;
+		}
 
-			#heart:after {
-				left: 0;
-				transform: rotate(45deg);
-				transform-origin: 100% 100%;
-			}
+		#heart:after {
+			left: 0;
+			transform: rotate(45deg);
+			transform-origin: 100% 100%;
+		}
 
-			.img-desc{
-				margin: 20px 0;
-			}
+		.img-desc {
+			margin: 20px 0;
+		}
 	</style>
 }
 
@@ -72,22 +73,24 @@
 
 <div class="img-data-container">
 	<img src="~/ArtWorksImages/@Model.Thumbnail" class="center-img" alt="" width="500" />
-	<div id='heart' class='button' style="transform: scale3d(0.3, 0.3, 0.3)"></div>
-
-	@if (true)
+	@if (Request.IsAuthenticated)
 	{
+		<div id='heart' class='button' style="transform: scale3d(0.3, 0.3, 0.3)"></div>
+
+
+
 		var donations = Session["Donations"] as List<int>;
 		if (donations != null && donations.Contains(Model.Id))
 		{
-			
-				@Html.ActionLink("Remove", "RemoveDonation", "Commissions", new { id = Model.Id }, new { @class = "btn btn-danger" })
-			
+
+			@Html.ActionLink("Remove", "RemoveDonation", "Commissions", new { id = Model.Id }, new { @class = "btn btn-danger" })
+
 		}
 		else
 		{
-			
-				@Html.ActionLink("Add to basket", "Donation", "Commissions", new { id = Model.Id }, new { @class = "btn btn-success" })
-			
+
+			@Html.ActionLink("Add to basket", "Donation", "Commissions", new { id = Model.Id }, new { @class = "btn btn-success" })
+
 		}
 	}
 
@@ -98,16 +101,19 @@
 
 
 
+@if (Request.IsAuthenticated)
+{
+	<div class="well">
+		<h4>Leave a Comment:</h4>
+		<form role="form" method="post">
+			<div class="form-group">
+				<textarea name="body" class="form-control" rows="3"></textarea>
+			</div>
+			<button type="submit" name="submit" class="btn btn-primary">Submit</button>
+		</form>
+	</div>
+}
 
-<div class="well">
-	<h4>Leave a Comment:</h4>
-	<form role="form" method="post">
-		<div class="form-group">
-			<textarea name="body" class="form-control" rows="3"></textarea>
-		</div>
-		<button type="submit" name="submit" class="btn btn-primary">Submit</button>
-	</form>
-</div>
 
 
 <div class="media">

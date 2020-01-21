@@ -1,4 +1,4 @@
-﻿@model IEnumerable<GroupProject.Models.ArtWork>
+﻿@model GroupProject.Models.ProfileViewModel
 @{
     ViewBag.Title = "Artworks";
     Layout = "~/Views/Shared/_Profile.cshtml";
@@ -134,12 +134,12 @@
                 -webkit-transition-delay: .2s;
                 transition-delay: .2s;
             }
-    </style>    
+    </style>
 }
 <div class="container">
     <div class="grid">
         <div class="grid-sizer"></div>
-        @foreach (var item in Model)
+        @foreach (var item in Model.Artworks)
         {
             <div class="grid-item">
                 <div class="hovereffect">

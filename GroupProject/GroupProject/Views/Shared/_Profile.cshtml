@@ -1,4 +1,5 @@
-﻿
+﻿@model GroupProject.Models.ProfileViewModel
+    
 @{
     Layout = null;
 }
@@ -29,7 +30,16 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Admin Panel", "Index", "Admin")</li>
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <li>@Html.ActionLink("Admin Panel", "Index", "Admin")</li>
+                    }
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Checkout", "PaymentWithPaypal", "Commissions")</li>
+                        <li>@Html.ActionLink("My profile", "Index", "Profile")</li>
+                    }
+
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -39,7 +49,7 @@
 
         <div id="content-wrapper">
             <div class="container">
-                <h1>Username</h1>
+                <h1>@Model.ApplicationUser.UserName</h1>
                 <div class="row">
                     <div class="col-md-12">
                         <img style='float:left;width:200px;height:200px; margin-right:10px;' src="https://via.placeholder.com/200" />
@@ -64,12 +74,16 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
-                            <li><a href="Artworks">Artworks <span class="sr-only">(current)</span></a></li>
+                            <li><a href="~/Profile/Artworks">Artworks <span class="sr-only">(current)</span></a></li>
                             <li><a href="#">Favourites</a></li>
                             <li><a href="#">Comments</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
-                            <li>@Html.ActionLink("Upload", "Create", "ArtWork")</li>
+                            @if (User.IsInRole("Administrator") || User.IsInRole("Artist"))
+                            {
+                                <li>@Html.ActionLink("Upload", "Create", "ArtWork")</li>
+                            }
+
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
                                 <ul class="dropdown-menu">

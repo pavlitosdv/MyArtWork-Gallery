@@ -141,13 +141,13 @@ namespace GroupProject.Repositories
                 //tags = db.Tags.Where(t => t.Name.Contains(searchTerm)).ToList();
 
                 artWorks = db.ArtWorks.Include("Tags")
-                            .Where(i => i.Name.Contains(searchTerm)).ToList();
+                            .Where(i => i.Name.Contains(searchTerm) || i.Tags.Any(t => t.Name == searchTerm)).ToList();
 
 
                 //.Where(i => i.Name.Contains(searchTerm) || tags.Any(t => t.Name)).ToList();
 
                 //artWorks = db.ArtWorks.Include("Tags")
-                //             .Where(x => x.Tags.Any(r => tags.Contains(r.Name)));
+                //             .Where(x => x.Name.Contains(searchTerm) || ).ToList();
 
             }
             return artWorks;

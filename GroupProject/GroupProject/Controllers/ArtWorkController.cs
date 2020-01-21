@@ -33,6 +33,7 @@ namespace GroupProject.Controllers
             return View(artWorks);
         }
 
+        [Authorize(Roles = "Artist, Administrator")]
         public ActionResult Create()
         {
             List<Tag> tags = null;
@@ -44,7 +45,7 @@ namespace GroupProject.Controllers
             return View();
         }
 
-        [Authorize]
+        [Authorize(Roles = "Artist, Administrator")]
         [HttpPost]
         public ActionResult Create(ArtWork artwork)
         {

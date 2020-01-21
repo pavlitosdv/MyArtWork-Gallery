@@ -22,8 +22,16 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Admin Panel", "Index", "Admin")</li>
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <li>@Html.ActionLink("Admin Panel", "Index", "Admin")</li>
+                    }
+                    @if(Request.IsAuthenticated)
+                    {
                     <li>@Html.ActionLink("Checkout", "PaymentWithPaypal", "Commissions")</li>
+                    <li>@Html.ActionLink("My profile", "Index", "Profile")</li>
+                    }
+
                 </ul>
 
                 @Html.Partial("_LoginPartial")
