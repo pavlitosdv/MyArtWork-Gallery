@@ -64,12 +64,12 @@ namespace GroupProject.Controllers
             //dataPointsBar.Add(new DataPointBar("Physiology or Medicine", 11));
             //dataPointsBar.Add(new DataPointBar("Peace", 13));
 
-            dataPointsPie.Add(new DataPointPie("Simple Users", 26));
-            dataPointsPie.Add(new DataPointPie("Artists", 20));
-            dataPointsPie.Add(new DataPointPie("Tags", 5));
-            dataPointsPie.Add(new DataPointPie("Comments", 3));
-            dataPointsPie.Add(new DataPointPie("Favourites", 7));
-            dataPointsPie.Add(new DataPointPie("Others", 17));
+            dataPointsPie.Add(new DataPointPie("Sky", 26));
+            dataPointsPie.Add(new DataPointPie("Cat", 20));
+            dataPointsPie.Add(new DataPointPie("Sea", 5));
+            dataPointsPie.Add(new DataPointPie("Forest", 3));
+            dataPointsPie.Add(new DataPointPie("Blue", 7));
+            dataPointsPie.Add(new DataPointPie("Air", 17));
 
             ViewBag.DataPointsPie = JsonConvert.SerializeObject(dataPointsPie);
             ViewBag.DataPointsBar = JsonConvert.SerializeObject(dataPointsBar);
@@ -184,5 +184,14 @@ namespace GroupProject.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Preferences()
+        {
+            return View();
+        }
+
+        public ActionResult Comments()
+        {
+            return View();
+        }
     }
 }

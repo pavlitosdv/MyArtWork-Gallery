@@ -3,14 +3,18 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<style>
-    .container.body-content {
-        background-image: url(https://images.unsplash.com/photo-1533134486753-c833f0ed4866?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-</style>
+@section  Styles{
+    <style>
+        .container.body-content .container {
+            background-image: url(https://images.unsplash.com/photo-1533134486753-c833f0ed4866?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            padding-bottom: 10px;
+        }
+    </style>
+}
+
 
 <div class="container">
     <h1>Username</h1>
