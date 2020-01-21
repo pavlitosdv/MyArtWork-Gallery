@@ -124,7 +124,8 @@ namespace GroupProject.Controllers
             var donations = Session["Donations"] as List<int>;
 
             ArtWork artworksItem = null;
-            List<ArtWork> artworks = null;
+            List<ArtWork> artworks = new List<ArtWork>();
+            //List<ArtWork> artworks = (List<ArtWork>)Session[donations];
 
             foreach (var item in donations)
             {
@@ -158,17 +159,17 @@ namespace GroupProject.Controllers
             // similar as we did for credit card, do here and create details object
             var details = new Details()
             {
-                tax = "1.00",
-                shipping = "1.00",
+                tax = "1",
+                shipping = "1",
                 subtotal = artworks.Sum(x => x.Price).ToString()
             };
 
             // similar as we did for credit card, do here and create amount object
             var amount = new Amount()
             {
-                currency = "USD",
-                total = (Convert.ToDecimal(details.tax, new CultureInfo("en-US")) + Convert.ToDecimal(details.shipping, 
-                new CultureInfo("en-US")) + Convert.ToDecimal(details.subtotal, new CultureInfo("en-US"))).ToString("0.00", new CultureInfo("en-US")),//tax+shipping+subtotal            
+                currency = "EUR",
+                total = (Convert.ToDouble(details.tax, new CultureInfo("en-US")) + Convert.ToDouble(details.shipping, 
+                new CultureInfo("en-US")) + Convert.ToDouble(details.subtotal, new CultureInfo("en-US"))).ToString("0.00", new CultureInfo("en-US")),//tax+shipping+subtotal            
                 //total = "7", // Total must be equal to sum of shipping, tax and subtotal.
                 details = details
             };
