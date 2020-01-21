@@ -313,6 +313,7 @@
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Configuration.cs" />
     <Compile Include="Models\Preference.cs" />
+    <Compile Include="Models\ProfileViewModel.cs" />
     <Compile Include="Models\Tag.cs" />
     <Compile Include="Models\UserRoleViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

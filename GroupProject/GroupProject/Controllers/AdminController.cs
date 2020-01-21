@@ -16,6 +16,7 @@ using System.Web.Security;
 
 namespace GroupProject.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class AdminController : Controller
     {
         public AdminApiRepository _adminApiRepository = new AdminApiRepository();

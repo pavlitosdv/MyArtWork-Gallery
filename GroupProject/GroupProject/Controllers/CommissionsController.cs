@@ -108,7 +108,7 @@ namespace GroupProject.Controllers
         //    string userId = User.Identity.GetUserId();
         //    //_commissionRepository.AddCommissionToUser(userId, ids, total);
 
-        //    return RedirectToAction("Index", "Home");
+            //return RedirectToAction("Index", "Home");
         //}
 
         //--------------------------------------------

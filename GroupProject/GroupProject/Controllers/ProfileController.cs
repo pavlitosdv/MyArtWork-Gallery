@@ -12,26 +12,30 @@ using System.Web.Mvc;
 
 namespace GroupProject.Controllers
 {
+    [Authorize]
     public class ProfileController : Controller
     {
         ApplicationDbContext db = new ApplicationDbContext();
 
         ArtWorksRepository _artWorksRepository = new ArtWorksRepository();
 
-
+        
         // GET: Profile
         public ActionResult Index()
         {
-            //string userId = User.Identity.GetUserId();
+            string userId = User.Identity.GetUserId();
+            ProfileViewModel vm = new ProfileViewModel();
 
-            //ApplicationUser LogedInUser = null;
-            //using (ApplicationDbContext db = new ApplicationDbContext())
-            //{
-            //    LogedInUser = db.Users.SingleOrDefault(i => i.Id == userId);
-            //}
+            ApplicationUser LogedInUser = null;
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                LogedInUser = db.Users.SingleOrDefault(i => i.Id == userId);
+            }
 
-            //return View(LogedInUser);
-            return View();
+            vm.ApplicationUser = LogedInUser;
+            vm.Artworks = _artWorksRepository.GetArtWorksByArtist(userId).ToList(); ;
+            return View(vm);
+            //return View();
         }
 
         public ActionResult Edit()
@@ -99,12 +103,20 @@ namespace GroupProject.Controllers
 
         public ActionResult Artworks()
         {
-            string artistId = User.Identity.GetUserId();
+            string userId = User.Identity.GetUserId();
+            ProfileViewModel vm = new ProfileViewModel();
 
-            var artWorks = _artWorksRepository.GetArtWorksByArtist(artistId);
+            ApplicationUser LogedInUser = null;
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                LogedInUser = db.Users.SingleOrDefault(i => i.Id == userId);
+            }
 
-            return View(artWorks);
+            vm.ApplicationUser = LogedInUser;
+            vm.Artworks = _artWorksRepository.GetArtWorksByArtist(userId).ToList(); ;
+            return View(vm);
         }
+
 
     }
 }
