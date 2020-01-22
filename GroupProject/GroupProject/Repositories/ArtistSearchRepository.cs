@@ -35,7 +35,9 @@ namespace GroupProject.Repositories
             {
                 using (var db = new ApplicationDbContext())
                 {
-                    artists = db.Users.Where(i => i.Roles.Any(r => r.RoleId == db.Roles.FirstOrDefault(z => z.Name == "Artist").Id) && i.UserName == searchTerm).ToList();
+                    //var roleId = db.Roles.FirstOrDefault(z => z.Name == "Artist").Id;
+                    //artists = db.Users.Where(i => i.Roles.Any(r => r.RoleId == roleId)).ToList();
+                    artists = db.Users.Where(i => i.Roles.Any(r => r.RoleId == db.Roles.FirstOrDefault(z => z.Name == "Artist").Id) && i.UserName.Contains(searchTerm)).ToList();
                 }                
             }
             else
